@@ -1,0 +1,218 @@
+*查询表结构
+    *desc 表名;
+1.修改表名
+    alter table 表名 rename to 新的表名;
+2.修改表的字符集
+    *alter table 表名 character set 字符集名称;
+3.添加一列
+    *alter table 表名 add 列名 数据类型；
+4.修改列名称类型
+    alter table 表名 change 列名 新列名 新数据类型;
+    alter table 表名 modify 列名 新数据类型;
+5.删除列
+    alter table 表名 drop 列名
+
+
+2.去除重复:
+    *distinct
+3.计算列
+    *一般可以使用四则运算计算一些列的值。 (-般只会进行数值型的计算)
+    * ifnull(表达式1,表达式2) :
+        *null参与的运算，计算结果都为null
+        *表达式1 :哪个字段需要判断是否为null
+        *如果该字段为nul1后的替换值。
+4.起别名:
+    *as:as也可以省略
+
+
+*多表查询的分类:
+    1.内连接查询:
+        1.隐式内连接
+            *例子:
+            -- 查询所有员工信息和对应的部门信息
+            SELECT * FROM emp, dept WHERE emp.dept_ id = dept. id ;
+            查询员工表的名称，性别，部门表的名称
+            SELECT emp.name , emp.gender , dept.name FROM emp,dept WHERE emp. dept_ id = dept.id ;
+            SELECT
+                t1.name, --员工表的姓名
+                t1.gender,--员工表的性别
+                t2.name --部门表的名称
+            FROM
+                emp t1,
+                dept t2
+            WHERE
+                t1. dept_ id = t2. id ;
+        2.显式内连接:
+            *语法: select 字段列表from表名1 [inner] join 表名2 on条件
+            *例如:
+                * SELECT * FROM emp INNER JOIN dept ON emp. dept_ id = dept.id ;
+                * SELECT * FROM emp J0IN dept ON emp.dept_ id = dept. id ;
+        3.内连接查询:
+            1.从哪些表中查询数据
+            2.条件是什么
+            3.查询哪些字段
+    2.外链接查询:
+        1.左外连接:
+            *语法: select 字段列表 from 表1 left [outer] join表2 on条件
+            *查询的是左边所有数据以及其交集部分
+        2.右外连接:
+             *语法: select 字段列表 from 表1 right [outer] join表2 on条件
+             *查询的是右边所有数据以及其交集部分
+    3.子查询:
+         *概念:查询中嵌套查询，称嵌套查询为子查询。
+             --查询工资最高的员工信息
+             -- 1查询最高的工资是多少9000
+             SELECT MAX(sailary) FROM emp ;
+
+             -- 2查询员工信息，并且工资等于9000的
+             SELECT* FROM emp WHERE emp." salary = 9000;
+
+             -- 一条sq1就完成这个操作
+             SELECT * FROM emp WHERE emp.~ salary = (SELECT MAX(salary) FROM emp) ;
+        *子查询不同情况
+        1.子查询的结果是单行单列的:
+            *子查询可以作为条件,使用运算符去判断。 > >= = < <=
+            * 查询员工工资小于平均工资的人
+                SELECT * FROM emp WHERE emp.salary < (SELECT AVG( salary) FROM emp);
+        2.子查询的结果是多行单列的:
+            *子查询可以作为条件，使用运算符in来判断
+            --查询'财务部'和'市场部'所有的员工信息
+            SELECT id FROM dept WHERE NAME = '财务部' OR NAME ='市场部';
+            SELECT * FROM emp WHERE dept_ id = 3 OR dept_ id = 2;
+
+            SELECT * FROM emp WHERE dept_ _id IN (SELECT id FROM dept WHERE NAME = '财务部' OR NAME = ' 市场部');
+        3.子查询的结果是多行多列的:
+            *子查询可以作为一张虚拟表参与查询
+            --查询员工入职日期是2011 - 11- 11日之后的员工信息和部门]信息
+            --子查询
+            SELECT * FROM dept t1 ,(SELECT * FROM emp WHERE emp. join_ _date^ >‘ 2011-11-11') t2
+            WHERE t1.id = t2.dept_ id;
+            --普通内连接
+            SELECT * FROM emp t1,dept t2 WHERE t1." dept_id = t2.id AND t1.join_date > ‘2011-11-11'
+
+
+
+
+
+
+
+/var/lib/mysql   mysql数据库文件的存放路径
+/usr/share/mysql    配置文件目录
+/usr/bin    相关命令目录
+
+二进制日志log-bin
+错误日志log-error
+查询日志log
+
+数据文件:
+    frm文件存放表结构
+    myd文件存放表数据
+    myi文件存放表索引
+
+
+修改字符集:
+vim /etc/my.cnf
+在最后添加:character_set_server=utf8
+alter database test character set 'utf8';
+alter table test convert to character set 'utf8';
+
+创建用户以及授予权限:
+create user test identified by '123456';
+grant select on *.* to test@'%';
+flush privileges;
+
+
+缓存：读信息
+缓冲：写信息
+
+开启缓存:
+vim /etc/my.cnf  (配置文件)
+在最后添加:query_cache_type=1
+先开启:show variables like '%profiling%';
+set profiling=1;
+set global query_cache_size = 600000;
+set session query_cache_type = ON;
+利用show profiles查看mysql执行周期:
+show profiles;
+查看执行周期详细一点的mysql语句执行细节:
+show profile cpu,block io for query 12;##12为id
+
+查看是否开启慢查询日志:
+show variables like '%slow_query_log%';
+开启:set global slow_query_log=1;
+查看long_query_time默认值(最慢响应时间):
+show variables like '%long_query_time%';
+设置:set global long_query_time=1;
+
+mysqldumpslow --help   ##查询日志帮助工具
+
+show variables like 'profiling';
+set profiling = on;
+查看:show profile cpu,block io for query 4;
+!!很糟糕的查看结果
+    !!converting HEAP to MyISAM 查询结果太大，内存都不够用了往磁盘上搬了。
+    !!Creating tmp table 创建临时表
+    !!Copying to tmp table on disk 把内存中临时表复制到磁盘，危险！！！
+    !!locked
+
+##全局查询日志 测试可以用,生产环境不能用
+set global general_log=1;
+set global log_output='TABLE';
+
+
+查看锁状态:
+show open tables
+
+show status like 'table%';
++-----------------------+---------+
+| Variable_name         | Value   |
++-----------------------+---------+
+| Table_locks_immediate | 1474044 |
+| Table_locks_waited    | 0       |
++-----------------------+---------+
+
+事务ACID:
+    原子性(Atomicity)
+    一致性(Consistent)
+    隔离性(Isolation)
+    持久性(Durable)
+
+show variables like 'tx_isolation';
++---------------+-----------------+
+| Variable_name | Value           |
++---------------+-----------------+
+| tx_isolation  | REPEATABLE-READ |
++---------------+-----------------+
+
+show status like 'innodb_row_lock%';
++-------------------------------+-------+
+| Variable_name                 | Value |
++-------------------------------+-------+
+| Innodb_row_lock_current_waits | 0     |
+| Innodb_row_lock_time          | 0     |
+| Innodb_row_lock_time_avg      | 0     |
+| Innodb_row_lock_time_max      | 0     |
+| Innodb_row_lock_waits         | 0     |
++-------------------------------+-------+
+Innodb_row_lock_current_waits: 当前正在等待锁定的数量;
+Innodb_row_lock_time: **从系统启动到现在锁定总时间长度**;          等待总时长
+Innodb_row_lock_time_avg: **每次等待所花平均时间**;               等待平均时长
+Innodb_row_lock_time_max: 从系统启动到现在等待最常的一次所花的时间;
+Innodb_row_lock_waits: **系统启动后到现在总共等待的次数**;         等待总次数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

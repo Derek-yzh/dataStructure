@@ -1,0 +1,51 @@
+##安装jdk1.8
+    检查下系统中的jdk版本:java -version
+    检查jdk安装包:rpm -qa | grep java
+    如果有，则卸载旧的:rpm -e --nodeps 要卸载的包(包通过rpm -qa | grep java获取))
+    或者通过以下命令卸载:yum remove *openjdk*
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
+    如果出现【-bash: wget: 未找到命令】的提示，则进行wget的插件安装（命令行输入：yum -y install wget），安装完毕后，再次执行下载jdk的操作
+    解压:tar -zxvf jdk-8u131-linux-x64.tar.gz
+    创建java存放目录:管理员:mkdir /usr/local/java 非管理员:sudo mkdir /usr/local/java
+    将解压后的文件内容，拷贝到新建的目录下:mv /tools/jdk1.8.0_131/ /usr/local/java/
+    修改环境变量:vi /etc/profile
+    在文件最后面加入以下几句:
+        export JAVA_HOME=/usr/local/java/jdk1.8.0_131
+        export JRE_HOME=${JAVA_HOME}/jre
+        export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib:$CLASSPATH
+        export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin
+        export PATH=$PATH:${JAVA_PATH}
+    通过命令source /etc/profile 让profile文件立即生效(我采用的方式) source /etc/profile
+    命令行输入javac 命令行输入java -version 测试是否安装成功.
+
+##安装Nginx
+    yum install gcc-c++
+    yum install -y pcre pcre-devel
+    yum install -y zlib zlib-devel
+    yum install -y openssl-devel
+    下载nginx安装包:wget -i -c http://nginx.org/download/nginx-1.17.5.tar.gz
+    安装依赖包，新版本nginx依赖zlib-devel、pcre-devel，这里我们不妨把其他的也一并安装:
+        yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel
+    把下载的文件解压:tar -zxvf nginx-1.17.5.tar.gz
+    安装nginx：执行以下命令
+        //进入nginx
+        cd nginx-1.17.5
+        //执行命令
+        ./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module
+        //执行make命令
+        make
+        //执行make install命令
+        make install
+    安装完毕之后， 我们就可以启动nginx:/usr/local/nginx/sbin/nginx
+    然后访问这个地址localhost:80，就可以看到nginx的简单界面了，nginx默认端口为：80
+    温馨提示:以下是nginx常用命令,首先进入到命令目录:
+        cd /usr/local/nginx/sbin
+        然后想做什么操作，就执行什么命令吧
+            # 启动
+            ./nginx
+            # 关闭
+            ./nginx -s stop
+            # 重启
+            ./nginx -s reload
+
+    nginx.conf::::::

@@ -1,0 +1,206 @@
+FlowLayout:
+    流式布局管理器。按水平方向依次排列放置组件，排满-行，换下一行继续排
+    列。排列方向(左到右或.右到左)取决于容器的componentOrientation属性(该属性属
+    于Component)，它可能的值如下:
+        ComponentOrientation.LEFT TO RIGHT (默认)
+        ComponentOrientation.RIGHT TO LEFTH
+    同一行(水平方向)的组件的对齐方式由FlowLayout 的align属性确定，它可能的值如下:
+        FlowLayout.LEFT    左对齐
+        FlowLayout.CENTER   居中对齐(默认)
+        FlowLayout.RIGHT    右对齐
+        FlowLayout.LEADING
+            与容器方向的开始边对齐，例如，对于从左到右的方向，则与左边对齐
+        FlowLayout.TRAILING
+            与容器方向的结束边对齐，例如，对于从左到右的方向，则与右边对齐。
+    FlowLayout的构造方法:
+        FlowLayout()    默认居中对齐的，水平和垂直间隙是5个单位
+        FlowLayout(int align)   指定对齐方式
+        FlowLayout(int align， int hgap, int vgap)   指定对齐方式，水平、竖直间隙
+
+GridLayout:
+    网格布局管理器。它以矩形网格形式对容器的组件进行布置，把容器按行列分
+    成大小相等的矩形网格，一个网格中放置一个组件，组件宽高自动撑满网格。
+
+    GridLayout构造方法“
+    GridLayout()    默认构造,每个组件占据-行--列
+    GridLayout(int rows, int cols)  指定行数和列数的网格布局
+    GridLayout(int rows, int cols, int hgap, int vgap) 指定行数和列数，水平和竖直间隙
+
+BoxLayout:
+    箱式布局管理器。它把若干组件按水平或垂直方向依次排列放置.
+    Swing提供了一个实现了BoxLayout 的容器组件Box。使用Box提供的静态方法，
+    可快速创建水平/垂直箱容器(Box)，以及填充组件之间空隙的不可见组件。
+    用水平箱和垂直箱的组合嵌套可实现类似于GridBagLayout 的效果，但没那么复杂.
+
+    创建一个水平箱容器
+        Box hBox = Box.createHorizontalBox()
+    创建一个垂直箱容器
+        Box yBQx = Box.createVerticalBox()
+
+    见图片!!
+
+Cardlayout:
+    卡片布局管理器.
+    它将容器中的每个组件看作一张卡片，--次只能看到-张卡片,容器则充当卡片的堆栈，默认显示第-张卡片。。
+    //创建一个间距大小为0的卡片布局
+        CardLayout ()
+    //创建一个指定水平/垂直间距大小的卡片布局
+        CardLayout (int hgap, int ygap)
+    常用方法：见图片
+
+BorderLayout:
+    边界布局管理器
+    它把Container按方位分为5个区域(东、西、南、北、中，每个区域放置-一个组件。
+    构造方法：见图!!
+
+null：
+绝对布局。绝对布局没有特定--个布局管理器类来表示，给容器的布局管理器设置为null,
+就表示使用绝对布局，即通过设置组件的坐标和宽高来布置组件。
+绝对布局需要明确指定每一个组件的坐标和宽高，否则不显示。
+
+//设置组件的坐标
+void setLocation(int x, int y)
+void setLocation(Point p)
+//设置组件的宽高
+void setSize(int width, int height)
+void setSize(Dimension d)
+//设置组件的界限(一次性设置组件的坐标和宽高)。
+void setBounds(int X int y, int width, int height)
+void setBounds(Rectangle rect）
+
+=====================================组件================================================
+JLabel(标签)
+    标签主要用于展示文本或图片，也可以同时显示文本和图片。
+    构造方法：
+        JLabel()
+        JLabel(String text)
+        JLabel(String text, int horizontalAlignment)
+        JLabel(Icon image)
+        JLabel(Icon image, int horizontalAlignment)。
+        JLabel(String text, Icon image, int horizontalAlignment)
+    主要方法：
+        //设置文本和图片。
+        void setText(String text)
+        void setIcon(Icon icon)
+        //设置文本相对于图片的位置(文本默认在图片右边垂直居中)。
+        void setHorizontalTextPosition(int textPosition)
+        void setVerticalTextPosition(int textPosition)
+        //设置标签内容(在标签内)的对其方式(默认左对齐并垂直居中)。
+        void setHorizontalAlignment(int alignment)
+        void setVerticalAlignment(int alignment)
+        //设置图片和文本之间的间隙←
+        void setIconTextGap(int iconTextGap)
+            *下面的方法定义在JComponent 基类中
+            //设置文本的字体类型、样式和大小
+            void setFont(Font font)
+              +++见图片
+
+    Imagelcon构造方法：见图片
+
+JButton:
+    常用构造方法
+        //创建不带有设置文本或图标的按钮
+        JButton()
+        //创建一个带文本的按钮一
+        JButton(String text)
+        //创建一个带图标的按钮。
+        JButton(Icon icon)
+    主要方法：jiantupian
+    常用监听器：
+          //添加和移除按钮的点击事件
+          void addActionListener(ActionListener listener)
+          void removeActionListener(ActionListener listener)
+
+JRadioButton:单选按钮
+构造方法：
+    /1无文本，未选中心
+    JIRadioButton()
+    /有文本，未选中心
+    JRadioButton(String text)
+    /有文本，并指定是否选中
+    JRadioButton(String text, boolean selected)
+常用方法：见图片
+
+JCheckBos:复选框
+
+JToggleButton:开关按钮
+
+JTextField:文本框
+    JTextField()
+    JTextField(String text)
+    JTextField(int columns)//列数
+    JTextField(String text, int columns)
+    方法见图片
+/添加焦点事件监听器
+void addFocusListener(FocusListener listener)
+/添加文本框内的文本改变监听器
+textField. getDocument(addDocumentListener(DocumentListener listener)
+/添加按键监听器
+void addKeyListener(KeyListener listener)
+
+JPasswordField (密码框) extends JTextField
+...
+...
+...
+
+JPanel  (默认流式布局)
+JScrollPane (滚动面板)
+JSplitPane (分隔面板)
+JTabbedPane (选项卡面板)
+
+JDialog、 JOptionPane (对话框)
+    JOptionPane提供的标准对话框类型分为以下几种
+        showMessageDialog  消息对话框，向用户展示个消息，没有返回值。
+        showConfirmDialog   确认对话框，询问一个问题是否执行。
+        showInputDialog    输入对话框，要求用户提供某些输入
+        showOptionDialog
+            选项对话框，上述三项的大统- ,自定义按钮文本，询问用户需要点击哪个按钮。
+        ...
+        ...用的时候百度吧
+
+JFileChooser:文件选择器
+
+JColorChooser:颜色选择器
+
+JMenuBar:菜单栏
+
+JToolBar:工具栏
+
+JPopupMenu:弹出菜单
+
+JDesktopPane类
+    用于创建多文档界面或虚拟桌面的容器。用户可创建JInternalFrame 对象并将其添加
+    到JDesktopPane. IDesktopPane扩展了JLayeredPane, 以管理可能的重叠内部窗体。它还
+    维护了对DesktopManager实例的引用，这是由UI 类为当前的外观(L&F)所设置的。注
+    意，IDesktopPane不支持边界。此类通常用作JInternalFrames的父类，为JInternalFrames
+    提供一个可插入的DesktopManager 对象。特定于L&F的实现install 负责正确设置
+    desktopManager变量。JInternalFrame 的父类是IDesktopPane 时，它应该将其大部分行
+    为(关闭、调整大小等)委托给desktopManager.
+
+============================================================================
+
+组件的位置和尺寸的设置:见图片
+
+组件边框Border:
+设置：
+    //创建边框
+    Border border = BorderFactory.createXxxBorder(...)
+    //设置组件的边框
+    jComponent setBorder(border)
+创建：
+    空边框：
+        //创建一个不占用空间的空边控(边界宽度均为0)
+        static Border createEmptyBorder()
+        //创建一个占用空间但不绘制的空边框，指定四条边占用的宽度(内边距效果)
+        static Border createEmptyBorder(f)int top, int left, int bottom, int right);
+    线边框：color颜色、thickness线宽(默认1px)、rounded是否有圆角
+        static Border createLineBorder(Color color)
+        static Border createLineBorder(Color color, int thickness)
+        static Border createLineBorder(Color color, int thickness, boolean rounded)
+    标题边框：
+        见图片
+    其他边框：
+            见图片
+
+===============================================================
+事件处理：

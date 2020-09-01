@@ -1,0 +1,439 @@
+## Servlet :    server applet
+    * 概念:运行在服务器端的小程序
+        * Servlet就是- 个接口，定义了Java类被浏览器访问到( tomcat识别)的规则。
+        * 将来我们自定义一个类，实现Servlet接口，复写方法。
+    *快速入门:
+        1.创建JavaEE项目
+        2.定义一个类，实现Servlet接口
+        3.实现接口中的抽象方法
+        4.配置Servlet(在xml中)
+            <!--配置Servlet-->
+            <servlet>
+                <servlet-name>demo1</servlet-name>
+                <servlet-class>servlet.ServletDemo1</servlet-class>
+            </servlet>
+
+            <servlet-mapping>
+                <servlet-name>demo1</servlet-name>
+                <url-pattern>/demo1</url-pattern>
+            </servlet-mapping>
+    * 执行原理:
+        1.当服务器接受到客户端浏览器的请求后，会解析请求URL路径，获取访问的Servlet的资源路径
+        2.查找web. xml文件,是否有对应的<url -pattern>标签体内容。
+        3.如果有，则在找到对应的<servlet - class>全类名
+        4. tomcat会将字节码文件加载进内存,并诅创建其对象
+        5.调用其方法(service方法)
+
+    * Servlet中的生命周期方法:
+        1.被创建:执行init方法，只执行一次(一般用于加载资源)
+            * Servlet什么时候被创建?
+                * 默认情况下，第一次被访问时，Servlet被创建
+                * 可以配试执行Servlet的创建时机。
+                    * 在<servlet>标签下配们
+                        1.第一次被访问时，创建
+                            * <load- on-startup>的值为负数
+                        2.在服务器启动时，创建
+                            * <load- on- startup>的值为0或正整数
+            * Servlet的init方法,只执行一次,说明一个Servlet在内存中只存在一个对象，Servlet是 单例的
+                * 多个用户同时访问时,可能存在线程安全问题
+                * 解决:尽量不要在Servlet中定义成员变量。即使定义了，也不要对其修改。
+        2.提供服务:执行service方法，执行多次.
+            * 每次访问Servlet时，Service方法都会被调用一次。
+        3.被销毁:执行destroy方法,只执行一次(一般用于释放资源)
+            * Servlet被销毁时执行。服务器关闭时，Servlet被销毁
+            * 只有服务器正常关闭时，才会执行destroy方法。
+
+    ## IDEA与tomcat的相关配置
+        1. IDEA会为每一 -个tomcat部署的项目单独建立一份配置 文件
+            Using CATALINA_BASE:   "C:\Users\80646\.IntelliJIdea2019.3\system\tomcat\_untitled"
+        2.工作空间项目
+            * tomcat部署的web项目
+            * tomcat真正访问的是“tomcat部署的web项目”，"tomcat部署的web项目 ”对应着"工作空间项目”的web目录下的所有资源
+            * WEB-INF目录下的资源不能被浏览器直接访问。
+        3.断点调试:使用"小虫"启动Debug 启动
+
+    6. Servlet的体系结构
+        Servlet --接口                ---爷爷
+        GenericServlet --抽缘类       ---爸爸
+        HttpServlet -- 抽缘类         ---儿子
+
+        *GenericServlet :将Servlet接口中其他的方法做了”默认空实现，只将service( )方法作为抽象
+            *将来定义Servlet类时， 可以继承GenericServlet, 实现service( )方法即可
+        * HttpServlet :对http协议的一种封装，筒化操作
+            1.定义类继承HttpServlet
+            2.复写doGet/doPost方法
+
+    7. Servlet相关配置
+        1. urlpartten:Servlet访问路径
+            1.一个Servlet可以定义多个访问路径: @WebServlet({"/d4" , "/dd4" , "/ddd4"})
+            2.路径定义规则:
+                1. /xxx :路径匹配
+                2. /xxx/xxx:多层路径,目录结构
+                3. *.do:扩展名匹配
+
+## HTTP :
+    *概念: Hyper Text Transfer Protocol 超文本传输协议
+        *传输协议:定义了，客户端和服务器端通信时，发送数据的格式
+        *特点:
+            1.基于TCP/IP的高级协议
+            2.默认端口号:80 .
+            3.基于请求/响应模型的: 一次请求对应一次响应
+            4.无状态的:每次请求之间相互独立，不能交互数据
+        历史版本:
+            * 1.0;每一次请求响应都会建立新的连接
+            * 1.1.复用连接
+
+*请求消息数据格式
+    1.请求行
+        请求方式 请求url 请求协议/版本
+        GET /login.html HTTP/1.1
+
+        *请求方式:
+            * HTTP协议有7中请求方式，常用的有2种
+                *GET:
+                    1.请求参数在请求行中，在ur1后。
+                    2.请求的url长度有限制的
+                    3.不太安全
+                * POST :
+                    1.请求参数在请求体中
+                    2.请求的ur1长度没有限制的
+                    3.相对安全
+    2.请求头:客户端浏览器告诉服务器一些信息
+        请求头名称:请求头值
+            * 常见的请求头:
+                1. user- Agent :浏览器告诉服务器，我访问你使用的浏览器版本信息
+                    * 可以在服务器端获取该头的信息，解决浏览器的兼容性问题
+                2. Referer : http://localhost/login. html
+                    * 告诉服务器，我(当前请求)从哪里来?
+                    * 作用:
+                        1.防盗链:
+                        2.统计工作:
+    3.请求空行
+        空行，就是用于分割POST请求的请求头，和请求体的。
+    4.请求体(正文):
+        *封装POST请求消息的请求参数的
+
+    *字符串格式:
+        GET /login.html HTTP/1.1
+        Host: localhost
+        User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/ 20100101 Firefox/60. 0
+        Accept: text/html, application/ xhtml +xml , application/xml;q=0.9,*/*;q=0.8
+        Accept-Language: zh-CN, zh;q=0.8, zh-TW;q=0.7 ,zh-HK ;q=0.5 ,en-Us;q=0.3,en;q=0.2
+        Accept- Encoding: gzip, deflate
+        Connection: keep-alive
+        Upgrade- Insecure-Requests: 1
+
+        username=aaa
+
+## Request :
+    1. request对象和response对象的原理
+        1. request和response对象是由服务器创建的。我们来使用它们
+        2. request对象是来获取请求消息，response对象是来设置响应消息
+    2.. request对象继承体系结构:
+        ServletRequest     --接口
+            继承
+        HttpServletRequest -- 接口
+            实现
+        org.apache.catalina.connector.RequestFacade  类(tomcat)
+
+    3. request 功能:
+        1. 获取请求消息数据
+            1.获取请求行数据
+                *GET /day14/demo1 ?name=zhangsan HTTP/1.1
+                *方法:
+                    1.获取请求方式: GET
+                        * string getMethod()
+                    2.(*重点)获取虚拟目录: /day14
+                        * string getContextPath()
+                    3.获取Servlet路径: /demo1
+                        * string getServletPath()
+                    4.获取get方式请求参数: name=aaa
+                        * string getQueryString()
+                    5.(*重点)获取请求URI : /day14/demo1
+                        * string getRequestURI():   /day14/demo1
+                        * stringBuffer getRequestURL() :    http://localhost/day14/demo1
+
+                        * URL :统一资源定位符: http://localhost/day14/demo1
+                        * URI :统一资源标识符: /day14/demo1
+                    6，获取协议及版本: HTTP/1.1
+                        * string getProtocol()
+                    7.获取客户机的IP地址:
+                        * String getRemoteAddr()
+            2.获取请求头数据
+                *方法:
+                    * (*)string getHeader(string name) :通过请求头的名称获取请求头的值
+                    * Enumeration<string> getHeaderNames() :获取所有的请求头名称      (当迭代器来用)
+            3.获取请求体数据:
+                *请求体:只有POST请求方式，有请求体,在请求体中封装了'POST请求的请求参数
+                *步骤:
+                    1.获取流对象
+                        *BufferedReader getReader() :获取字符输入流，只能操作字符数据
+                        * ServletInputStream getInputStream() :获取字节输入流，可以操作所有类型数据
+                            *在文件上传知识点后讲解
+                    2.再从流对象中拿数据
+        2.其他功能:
+            1. string getParameter(String name ) :根据参数名称获取参数值username=zs&password=123
+            2. string[] getParametervalues (string name) :根据参数名称获取参数值的数组hobby=xx&hobby=game
+            3. Enumeration<String> getparameterNames(): 获取所有请求的参数名称
+            4. Map<string, String[]> getParameterMap() :获取所有参数的map集合
+
+            *中文乱码问题:
+                * get方式: tomcat 8已经将get方式乱码问题解决了
+                * post方式:会乱码
+                    * 解决:在获取参数前，设irequest的编码request . setCharacterEncoding("utf-8");
+        2.请求转发:一种在服务器内部的资源跳转方式
+            1.步骤:
+                1.通过request对象获取请求转发器对象: RequestDi spatcher getRequestDispatcher(String path)
+                2.使用RequestDispatcher对象来进行转发: forward(ServletRequest request, ServletResponse response) I
+            2.特点:
+                1.浏览器地址栏路径不发生变化
+                2.只能转发到当前服务器内部资源中。
+                3.转发是一次请求
+        3.共享数据:
+            *域对象:一个有作用范围的对象，可以在范围内共享数据
+            * request域:代表一次请求的范围，-般用于请求转发的多个资源中共享数据
+            *方法:
+                1. void setAttribute(String name ,object obj): 存储数据
+                2. object getAttitude(string name ) :通过键获取值
+                3. void removeAttribute(String name) ;通过键移除键值对
+
+        4.获取ServletContext :
+            * ServletContext getServletContext()
+
+##案例:用户登录
+    *用户登录案例需求:
+        1.编写login. html登录页面
+            username & password 两个输入框
+        2.使用Drui d数据库连接池技术,操作mysql, day14数据库中user表
+        3.使用JdbcTemplate技术封装JDBC
+        4.登录成功跳转到successservlet展示:登录成功!用户名，欢迎您
+        5.登录失败跳转到FailServlet展示:登录失败，用户名或密码错误
+
+    *开发步骤
+        1.创建项目，导入html页面,配置文件，jar包
+        2.创建数据库环境
+            CREATE DATABASE day14;
+            USE day14; .
+            CREATE TABLE USER(
+            id INT PRIMARY KEY AUTO_ INCREMENT，
+            username VARCHAR(32) UNIQUE NOT NULL,
+            PASSWORD VARCHAR(32) NOT NULL
+            );
+        3.创建包cn,创建类User (用户实体类)
+        4.创建包util,创建类JDBCUtils,使用Durid连接池
+        5.创建包dao ,创建类UserDao ,提供login方法
+        6.编写web.servlet.LoginServlet类
+        8. login. html中form表单的acti on路径的写法
+            *虚拟目录+Servlet的资源路径
+        9. BeanUtils工具类，简化数据封装
+            *用于封装JavaBean的
+                1. JavaBean :标准的Java类
+                    1.要求:
+                        1.类必须被public修饰
+                        2.必须提供空参的构造器
+                        3.成员变量必须使用private修饰
+                        4.提供公共setter和getter方法
+                    2.功能:封装数据
+                2.概念:
+                    成员变量:
+                        属性: setter和getter方法截取后的产物
+                            例如: getUsername() --> Username--> username
+                3.方法:
+                    1. setProperty()
+                    2. getProperty()
+                    3. populate(object obj , Map map) :特map集合的键值对信息，封装到对应的JavaBean对象中
+
+2.响应消息:服务器端发送给客户端的数据
+    *数据格式:
+        1.响应行：
+            1.组成:协议/版本 响应状态码 状态码描述
+                2.响应状态码:服务器告诉客户端浏览器本次请求和响应的一个状态。
+                1.状态码都是3位数字
+            2.分类:
+                1.1xx:服务器就收客户端消息，但没有接受完成，等待一段时间后，发送1xx多状态码
+                2.2xx:成功。代表:200
+                3.3xx :重定向。代表: 302(重定向), 304(访问缓存)
+                4.4xx:客户端错误。
+                    *代表:
+                        * 404 (请求路径没有对应的资源)
+                        * 405 :请求方式没有对应的doxxx方法
+                5.5xx :服务器端错误。代表: 500(服务器内部出现异常)
+        2.响应头：
+            1.T Content-Type :服务器告诉客户端本次响应体数据格式以及编码格式
+            2." Content-disposition :服务器告诉客户端以什么格式打开响应体数据
+                *值:
+                    * in-line:默认值,在当前页面内打开
+                    * attachment;filename=xxx :以附件形式打开响应体。文件下载
+        3.响应空行：
+        4.响应体：传输的数据
+
+## Response对象
+    *功能:设置响应消息
+        1.设置响应行:
+            1.格式: HTTP/1.1 200 ok
+            2.设置状态码: setStatus(int sc)
+        2.设置响应头:setHeader (string name， String value)
+        3.设置响应体:
+            *使用步骤:
+                1.获取输出流
+                    字符输出流: PrintWriter getWriter()
+                    *字节输出流: ServletOutputStream getOutputStream()
+                2.使用输出流，将数据输出到客户端浏览器
+
+*案例:
+    1.完成重定向
+        *重定向:资源跳转的方式
+        *代码实现:
+            //设置状态码为302
+            response.setstatus(302);
+            //设置响应头location
+            response.setHeader("location", "/day/responseDemo2");*/
+
+            //简单的重定向方法
+            response.sendRedirect(" /day/responseDemo2");
+        *重定向的特点:redirect
+            1.地址栏发生变化
+            2.重定向可以访问其他站点(服务器)的资源
+            3.重定向是两次请求
+        *转发的特点:forward
+            1.转发地址栏路径不变
+            2.转发只能访问当前服务器下的资源
+            3.转发是一次请求
+        *路径写法:
+        1.路径分类
+            1.相对路径:通过相对路径不可以确定唯一资源
+                *如:./index. html
+                *不以/开头,以.开头路径
+                *规则:找到当前资源和目标资源之间的相对位议关系
+            2.绝对路径:通过绝对路径可以确定唯一资源
+                *如: http://localhost/day/responseDemo2   /day/ responseDemo2
+                *以/开头的路径
+                *规则:判断定义的路径是给谁用的?判断请求将来从哪儿发出
+                    *给客户端浏览器使用:需要加虚拟目录(项目的访问路径)
+                        *建议虚拟目录动态获取: request. getContextPath()
+                        * <a>，<form> 重定向...
+                    *给服务器使用:不需要加虚拟目录
+                        *转发路径
+    2.服务器输出字符数据到浏览器
+        *步骤:
+            1. 获取字符输出流
+            2.输出数据
+        *注意:
+            *乱码问题:
+                1. PrintWriter pw = response.getWriter() ;获取的流的默认编码是IS0-8859-1
+                2.设置该流的默认编码
+                3.告诉浏览器响应体使用的编码
+
+    3.服务器输出字节数据到浏览器
+        步骤:
+            1.获取字节输出流
+            2.输出数据
+    4.验证码
+        1.本质:图片
+        2.目的:防止恶意表单注册
+
+# ServletContext对象 :
+    1.概念:代表整个web应用，可以和程序的容器(服务器)来通信
+    2.获取:
+        1.通过request对象获取
+        request . getServletContext();
+        2.通过HttpServlet获取
+        this. getServletContext();
+    3.功能:
+        1.获取MIME类型:
+            MIME类型:在互联网通信过程中定义的- -种文件数据类型
+                格式:大类型/小类型  text/html   image/jpeg
+            获取: string getMimeType(String file)
+        2.域对象:共享数据:
+            1. setAttribute(String name , object value)
+            2. getAttribute(String name)
+            3. removeAttribute(String name)
+
+            ServletContext对象范围:所有用户所有请求的数据.生命周期贼长
+        3.获取文件的真实(服务器)路径:
+
+##案例:
+    *文件下载需求:
+        1.页面显示超链接
+        2.点击超链接后弹出下载提示框
+        3.完成图片文件下载
+    *分析:
+        1.超链接指向的资源如果能够被浏览器解析,则在浏览器中展示，如果不能解析，则弹出下载提示框。不满足需求
+        2.任何资源都必须弹出下载提示框
+        3.使用响应头设置资源的打开方式:
+        content -disposition: attachment; filename=xxx
+    *步骤:
+        1.定义页面，编辑超链接href属性，指向Servlet, 传递资源名称filename
+        2.定义Servlet
+            1.获取文件名称
+            2.使用字节输入流加载文件进内存
+            3.指定response的响应头: content - disposition: attachment ; filename=xxx
+            4.将数据写出到response输出流
+
+##会话技术
+    1.会话: -次会话中包含多次请求和响应。
+        * -次会话:浏览器第一 次给服务器资源发送请求，会话建立，直到有一 方断开为止
+    2.功能:在- -次会话的范围内的多次请求间，共享数据
+    3.方式:
+        1.客户端会话技术: Cookie
+        2.服务器端会话技术: Session
+
+## Cookie :
+    1.概念:客户端会话技术，将数据保存到客户端
+    2.快速入门:
+        *使用步骤:
+            1.创建cookie对象，绑定数据
+                * new Cookie(String name, string value)
+            2.发送Cookie对象
+                * response.addCookie(Cookie cookie)
+            3.获取Cookie,拿到数据
+                * Cookie[]  request.getCookies()
+    3.实现原理
+        *基于响应头set-cookie和请求头cookie实现
+    4. cookie的细节
+        1.一次可不可以发送多个cookie?
+            *可以
+            *可以创建多个cookie对象，使用response调用多次addCooki e方法发送cooki e即可。
+        2. cookie在浏览器中保存多长时间?
+            1.默认情况下，当浏览器关闭后，Cookie数据被销毁
+            2.持久化存储:    setMaxAge(int seconds )
+                1. 正数:将Cookie数据写到硬盘的文件中。持久化存储。cookie存活时间。
+                2.负数:默认值
+                3.0:删除cookie信息
+        3. cookie能不能存中文?
+            在tomcat 8之前cookie中不能直接存储中文数据。
+                *需要将中文数据转码---- -般采用URL编码(%E3)
+            在tomcat 8之后，cookie支持中文数据。
+        4. cookie共享问题?
+            1.*假设在一个tomcat服务器中，部署了多个web项目，那么在这些web项目中cooki e能不能共享?
+                *默认情况下cookie不能共享
+                * setPath(String path) :设置coqkie的获取范围。默认情况下，设置当前的虚拟目录
+                    * 如果要共享，则可以将path设置为"/"
+            2.不同的tomcat服务器间cookie共享问题?
+                setDomain(string path): 如果设置一级域名相同, 那么多个服务器之间cookie可以共享
+                setDomain(".baidu.com") ,那么tieba.baidu.com和news.baidu.com中cookie可以共享
+    5. Cookie的特点和作用
+        1. cookie存储数据在客户端浏览器
+        2.浏览器对于单个cookie的大小有限制(4kb)以及对同-个域名下的总cookie数量也有限制(20)
+
+        *作用:
+            1. cookie-般用于存 出少量的不太敏感的数据
+            2.在不登录的情况下，完成服务器对客户端的身份识别
+    6.案例:记住上一-次访问时间：
+        1.需求:
+            1.访问一个Servlet,如果是第一次访问， 则提示:您好，欢迎您首次访问。
+            2.如果不是第一次访问，则提示:欢迎回来，您上次访问时间为:显示时间字符串;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
