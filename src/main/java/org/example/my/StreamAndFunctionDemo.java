@@ -60,7 +60,8 @@ public class StreamAndFunctionDemo {
          *     确定类型为T的对象是否满足某约束，并返回boolean值。包含方法boolean test(T t);
          *
          */
-        Function<String,Integer> function = String::length;//函数型接口
+        //Function<String,Integer> function = String::length;//函数型接口
+        Function<String,String> function = (s)-> "function:"+s;//函数型接口
         System.out.println(function.apply("abc"));
 
         Predicate<String> predicate = String::isEmpty;//断定型接口
