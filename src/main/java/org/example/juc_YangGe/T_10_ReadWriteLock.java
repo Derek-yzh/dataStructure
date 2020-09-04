@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +54,7 @@ class MyCache{
  *   写--写能共存
  *
  */
-public class ReadWriteLockDemo11 {
+public class T_10_ReadWriteLock {
     public static void main(String[] args) {
         MyCache cache = new MyCache();
         for (int i = 1; i <= 5; i++) {

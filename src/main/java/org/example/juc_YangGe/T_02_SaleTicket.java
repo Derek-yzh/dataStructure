@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -44,7 +44,7 @@ interface Foo{
  *      1.1 一言不合，先创建一个资源类
  *
  */
-public class SaleTicketDemo102 {
+public class T_02_SaleTicket {
     public static void main(String[] args) {//主线程，一切程序的人口
         /*Foo foo = Integer::sum;
         System.out.println(foo.test(2,2));

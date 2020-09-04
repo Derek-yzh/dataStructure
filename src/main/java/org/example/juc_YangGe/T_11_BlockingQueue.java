@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
  *      方法类型    抛出异常    特殊值            阻塞      超时
  *        插入      add(e)     offer(e)false    put(e)    offer(e,time,unit)
  *        移除      remove()   poll()null       take()    poll(time,unit)
- *        检查      element()  peek()null       不可用     不可用
+ *    检查(看一眼)   element()  peek()null       不可用     不可用
  */
-public class BlockingQueueDemo12 {
+public class T_11_BlockingQueue {
     public static void main(String[] args) throws InterruptedException {
         ArrayBlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(3);
         System.out.println(blockingQueue.add("a"));//入队
@@ -22,6 +22,10 @@ public class BlockingQueueDemo12 {
         System.out.println(blockingQueue.remove());
         System.out.println(blockingQueue.remove());
         //System.out.println(blockingQueue.remove());//抛出异常
+
+
+        System.out.println("-----------------------------------------------------------------------------------");
+
 
         System.out.println(blockingQueue.peek());//null
         System.out.println(blockingQueue.offer("a"));//入队
@@ -35,6 +39,10 @@ public class BlockingQueueDemo12 {
         System.out.println(blockingQueue.poll());
         System.out.println(blockingQueue.poll()+"-------");//不抛出异常
 
+
+        System.out.println("-----------------------------------------------------------------------------------");
+
+
         blockingQueue.put("a");
         blockingQueue.put("b");
         blockingQueue.put("c");
@@ -45,9 +53,13 @@ public class BlockingQueueDemo12 {
         System.out.println(blockingQueue.take()+"===take===");
         //System.out.println(blockingQueue.take()+"===take===");//出队,如果队列为空则阻塞等待
 
+
+        System.out.println("-----------------------------------------------------------------------------------");
+
+
+        blockingQueue.offer("a");
         blockingQueue.offer("b");
-        blockingQueue.offer("b");
-        blockingQueue.offer("b");
+        blockingQueue.offer("c");
         //入队操作，如果队满等待3秒
         System.out.println(blockingQueue.offer("a", 3L, TimeUnit.SECONDS));
 

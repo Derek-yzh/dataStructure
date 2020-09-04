@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,7 +25,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  *
  *
  */
-public class NotSafeDemo01 {
+public class T_01_NotSafe {
 
     public static void listNotSafe() {
         //默认容量为10第一次扩容(通过右移一位)为15第二次22  vector默认扩容为原来的2倍 hashMap默认容量为16扩容为原值的一倍

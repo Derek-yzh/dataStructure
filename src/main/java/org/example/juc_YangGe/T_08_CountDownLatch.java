@@ -1,8 +1,6 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * countDownLatch.countDown():将计数器减一
  * 倒计时
  */
-public class CountDownLatchDemo09 {
+public class T_08_CountDownLatch {
 
     public static void main(String[] args) throws InterruptedException {
 

@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.TimeUnit;
 
@@ -48,7 +48,7 @@ class Phone{
  *
  *
  */
-public class Lock8Demo03 {
+public class T_03_Lock8 {
     public static void main(String[] args) throws InterruptedException {
         Phone phone = new Phone();
         Phone phone2 = new Phone();

@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.*;
 
@@ -14,16 +14,19 @@ import java.util.concurrent.*;
  *        TimeUnit unit,  keepAliveTime单位
  *        BlockingQueue<Runnable> workQueue, 任务队列，被提交但尚未被执行的任务
  *        ThreadFactory threadFactory,表示生成线程池中工作线程的工厂,用于创建线程,一般默认即可
- *        RejectedExecutionHandler handler，拒绝策略，表示当队列满了，并且工作线程大于等于
- *                                  线程池的最大线程数时如何来拒绝请求执行的runnable的策略
- *           java.util.concurrent.RejectedExecutionException
- *         拒绝策略：
+ *        RejectedExecutionHandler handler，
+ *                  拒绝策略，表示当队列满了，并且工作线程大于等于
+ *                  线程池的最大线程数时如何来拒绝请求执行的runnable的策略
+ *                  java.util.concurrent.RejectedExecutionException
+ *        拒绝策略：
  *           AbortPolicy(默认):直接抛出RejectedExecutionException异常阻止 系统正常运行
  *           CallerRunsPolicy:"调用者运行"一种调节机制，该策略既不会抛弃任务，也不
  *                            会抛出异常，而是将某些任务回退到调用者，从而降低新任务的流量。
  *           DiscardOldestPolicy:抛弃队列中等待最久的任务，然后把当前任务加人队列中尝试再次提交当前任务。
  *           DiscardPolicy:该策略默默地丢弃无法处理的任务,不予任何处理也不抛出异常。
  *                         如果允许任务丢失，这是最好的一种策略。
+ *
+ *
  * Executors.newFixedThreadPool(5) 一池五个线程
  *      执行长期任务性能好，创建一个线程池，
  *      一池有N个固定的线程，有固定线程数的线程
@@ -31,6 +34,8 @@ import java.util.concurrent.*;
  * Executors.newCachedThreadPool()
  *      执行很多短期异步任务，线程池根据需要创建新线程,
  *      但在先前构建的线程可用时将重用它们。可扩容,遇强则强
+ *
+ *
  *
  * 1、在创建了线程池后，开始等待请求。
  * 2、当调用execute ()方法添加一个请求任务时，线程池会做出如下判断:
@@ -43,7 +48,7 @@ import java.util.concurrent.*;
  *      如果当前运行的线程数大于corePoolSize，那么这个线程就被停掉。
  *      所以线程池的所有任务完成后，它最终会收缩到corePoolSize的大小。
  */
-public class MyThreadPool13 {
+public class T_12_ThreadPool {
 
     public static void main(String[] args) {
         System.out.println(Runtime.getRuntime().availableProcessors());
@@ -92,4 +97,6 @@ public class MyThreadPool13 {
             threadPool.shutdown();
         }
     }
+
+
 }

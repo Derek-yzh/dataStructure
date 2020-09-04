@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -71,7 +71,7 @@ class Pcd1{
  *
  *
  */
-public class ProdConsumerDemo04 {
+public class T_04_ProdConsumer {
 
     public static void main(String[] args) {
         Pcd1 pcd = new Pcd1();

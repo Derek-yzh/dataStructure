@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -26,7 +26,7 @@ class CdThread implements Callable<Integer>{
  * 2020-07-04 17:37:58
  * 关于Callable接口的使用
  */
-public class CallableDemo06 {
+public class T_06_Callable {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         long start = System.nanoTime();
 
@@ -62,11 +62,13 @@ public class CallableDemo06 {
         System.out.print("第一次计算用了"+l1+"s结果为:");
         System.out.println(result);
 
-        Thread t11 = new Thread(futureTask, "A");
+
+        start = System.nanoTime();
+        Thread t11 = new Thread(futureTask, "D");
         t11.start();
         result = futureTask.get();
         long l2 = (System.nanoTime() - start) / 1000_000_000L;
-        System.out.print("第二次计算用了"+(l2-l1)+"s结果为:");
+        System.out.print("第二次计算用了"+l2+"s结果为:");
         System.out.println(result);
     }
 }

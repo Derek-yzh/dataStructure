@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 
 import java.util.concurrent.*;
@@ -57,7 +57,7 @@ class MyTask extends RecursiveTask<Integer>{
  * RecursiveTask extends ForkJoinTask
  *
  */
-public class ForkJoinDemo13 {
+public class T_14_ForkJoin {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         MyTask myTask = new MyTask(0,1000);
         ForkJoinPool threadPool = new ForkJoinPool();

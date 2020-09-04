@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -80,7 +80,7 @@ class Cd1{
  * 来十轮
  *
  */
-public class ConditionDemo05 {
+public class T_05_Condition {
     public static void main(String[] args) {
         Cd1 cd1 = new Cd1();
         new Thread(() -> {

@@ -1,4 +1,4 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.Semaphore;
 
@@ -11,7 +11,7 @@ import java.util.concurrent.Semaphore;
  *      2.并发线程数的控制
  * 例如：抢车位
  */
-public class SemaphoreDemo10 {
+public class T_09_SemaphoreDemo {
     public static void main(String[] args) {
         Semaphore semaphore = new Semaphore(3);//模拟资源类有，有三个空车位
         for (int i = 1; i <= 10; i++) {
@@ -26,7 +26,7 @@ public class SemaphoreDemo10 {
                 }finally {
                     semaphore.release();
                 }
-            },String.valueOf(i)).start();
+            },"Car"+String.valueOf(i)).start();
         }
     }
 }

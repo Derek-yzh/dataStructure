@@ -1,4 +1,4 @@
-package org.example.jvm;
+package org.example.juc_YangGe;
 
 import java.util.Random;
 
@@ -72,7 +72,7 @@ import java.util.Random;
  *       经常会伴随至少一次的MinorGC(但并不是绝对的)。MajorGC的速度-般要比MinorGC慢上10倍以上
  *
  */
-public class JVMObject {
+public class T_13_JVMObject {
     public static void main(String[] args) {
         //测试ClassLoader
         /*Object o = new Object();

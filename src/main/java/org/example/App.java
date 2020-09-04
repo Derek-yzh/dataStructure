@@ -4,12 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- *
- * 2020-07-02 09:00:38
- * maven自动生成类
- *
- */
 public class App {
 
     /**

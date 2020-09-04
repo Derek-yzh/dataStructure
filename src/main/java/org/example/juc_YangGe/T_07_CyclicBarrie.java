@@ -1,8 +1,7 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 2020-07-07 15:30:00
@@ -10,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * 做加法
  * 人到齐才开会 集齐七颗龙珠召唤神龙
  */
-public class CyclicBarrieDemo08 {
+public class T_07_CyclicBarrie {
     public static void main(String[] args) {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(7,()->{
             System.out.println("******召唤神龙");

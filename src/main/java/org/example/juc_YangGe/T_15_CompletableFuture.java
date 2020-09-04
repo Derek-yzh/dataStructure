@@ -1,12 +1,11 @@
-package org.example.juc;
+package org.example.juc_YangGe;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 2020-07-08 21:33:11
  */
-public class CompletableFutureDemo14 {
+public class T_15_CompletableFuture {
     public static void main(String[] args) throws Exception{
         CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
             System.out.println(Thread.currentThread().getName() + "：没有返回值,update mysql");
