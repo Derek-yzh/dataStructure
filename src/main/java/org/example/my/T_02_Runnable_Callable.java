@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * 模拟双接口功能实现
  * 2020-09-04 09:58:23
  */
-public class Test_Runnable_Callable{
+public class T_02_Runnable_Callable{
 
     public static void main(String[] args) throws InterruptedException {
 

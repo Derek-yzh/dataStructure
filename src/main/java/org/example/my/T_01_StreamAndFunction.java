@@ -30,7 +30,7 @@ class User{
  *     偶数ID且年龄大于24且用户名转为大写且用户名字母倒排序,只输出一个用户名字
  *
  */
-public class StreamAndFunctionDemo {
+public class T_01_StreamAndFunction {
     public static void main(String[] args) {
         User u1 = new User(11, "a", 23);
         User u2 = new User(12, "b", 24);
