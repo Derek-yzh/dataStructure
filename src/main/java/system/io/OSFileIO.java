@@ -50,7 +50,7 @@ public class OSFileIO {
     }
 
     //测试buffer文件IO
-    //  jvm  8kB   syscall  write(8KBbyte[])
+    //  org.example.jvm  8kB   syscall  write(8KBbyte[])
 
     public static void testBufferedFileIO() throws Exception {
         File file = new File(path);
@@ -71,7 +71,7 @@ public class OSFileIO {
 
         RandomAccessFile raf = new RandomAccessFile(path, "rw");
 
-        raf.write("hello mashibing\n".getBytes());
+        raf.write("hello org.example.mashibing\n".getBytes());
         raf.write("hello seanzhou\n".getBytes());
         System.out.println("write------------");
         System.in.read();

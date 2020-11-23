@@ -1,7 +1,7 @@
 package org.example.dataStructure;
 
 import org.example.algorithm.SparseArrayImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 2020-07-02 09:40:48

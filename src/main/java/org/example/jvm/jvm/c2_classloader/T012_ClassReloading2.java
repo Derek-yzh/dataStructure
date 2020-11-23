@@ -31,10 +31,10 @@ public class T012_ClassReloading2 {
 
     public static void main(String[] args) throws Exception {
         MyLoader m = new MyLoader();
-        Class clazz = m.loadClass("com.mashibing.jvm.Hello");
+        Class clazz = m.loadClass("com.org.example.mashibing.org.example.jvm.Hello");
 
         m = new MyLoader();
-        Class clazzNew = m.loadClass("com.mashibing.jvm.Hello");
+        Class clazzNew = m.loadClass("com.org.example.mashibing.org.example.jvm.Hello");
 
         System.out.println(clazz == clazzNew);
     }

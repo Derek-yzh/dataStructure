@@ -73,6 +73,8 @@ public class T_01_StreamAndFunction {
         Supplier<String> supplier = ()-> "a";
         System.out.println(supplier.get());
 
+        System.out.println();
+
 
     }
 }

@@ -159,11 +159,12 @@ class EightQueens{
 public class RecursionDemo {
 
     public static void main(String[] args) {
-        //Maze test = new Maze();
-        //test.mazeStart();//迷宫
-        EightQueens eq = new EightQueens();
-        eq.check(0);
-        System.out.println("总数为："+eq.getCount());
+        Maze test = new Maze();
+        test.mazeStart();//迷宫
+
+        //EightQueens eq = new EightQueens();
+        //eq.check(0);
+        //System.out.println("总数为："+eq.getCount());
 
     }
 

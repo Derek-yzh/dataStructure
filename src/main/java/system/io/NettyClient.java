@@ -15,7 +15,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 
 /**
- * @author: 马士兵教育
+ * @author: Derek
  * @create: 2020-04-26 15:59
  */
 public class NettyClient {

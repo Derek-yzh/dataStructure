@@ -32,7 +32,9 @@ public class SocketMultiplexingSingleThreadv1 {
             while (true) {
                 Set<SelectionKey> keys = selector.keys();
                 System.out.println(keys.size()+"   size");
+
                 while (selector.select(500) > 0) {
+                    //返回的有状态的fd集合
                     Set<SelectionKey> selectionKeys = selector.selectedKeys();
                     Iterator<SelectionKey> iter = selectionKeys.iterator();
                     while (iter.hasNext()) {

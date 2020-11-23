@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 内存溢出
- * -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="c:/tmp/jvm.dump -XX:PrintGCDetails -Xms10M -Xmx10M
+ * -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="c:/tmp/org.example.jvm.dump -XX:PrintGCDetails -Xms10M -Xmx10M
  */
 public class TestHeapDump {
     public static void main(String[] args) {

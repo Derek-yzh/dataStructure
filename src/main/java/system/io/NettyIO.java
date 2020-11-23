@@ -67,15 +67,9 @@ class MyInbound extends ChannelInboundHandlerAdapter{
             System.out.print("触发的命令："+str+"...");
         }
 
-
         ctx.write(msg);
 
     }
-
-
-
-
-
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {

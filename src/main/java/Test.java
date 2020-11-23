@@ -1,23 +1,20 @@
-import designPattern.prototypePattern.improve.Person;
-
-import java.io.Serializable;
+import java.util.Scanner;
 
 public class Test {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
+        String s1 = "aaa";
+        String s2 = "aaa";
+        System.out.println(s1 == s2);
 
-        char c1 = 97;
-        System.out.println(c1);
-
-
-        char c2 = 98;
-        System.out.println(c2);
-
-
-
+        
     }
 
 
 }
+
+
+
+
 
 
