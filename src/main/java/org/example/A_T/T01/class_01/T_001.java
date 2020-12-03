@@ -1,4 +1,4 @@
-package org.example.TTTT.class_01;
+package org.example.A_T.T01.class_01;
 
 import java.util.LinkedList;
 
@@ -19,6 +19,7 @@ public class T_001 {
         for (int i = 0; i < res.length; i++) {
             System.out.print(res[i]+" ");
         }
+
     }
 
     public static int[] getMaxWindow(int[] arr, int w) {
