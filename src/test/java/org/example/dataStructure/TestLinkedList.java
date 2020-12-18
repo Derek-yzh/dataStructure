@@ -1,10 +1,10 @@
 package org.example.dataStructure;
 
-import org.example.algorithm.link.MyDoubleLinkedList;
-import org.example.algorithm.link.SingleLinkedList;
-import org.example.algorithm.link.SingleRingLinkedList;
-import org.example.domin.HeroNode;
-import org.example.domin.HeroNode2;
+import org.example.others.algorithm.link.MyDoubleLinkedList;
+import org.example.others.algorithm.link.SingleLinkedList;
+import org.example.others.algorithm.link.SingleRingLinkedList;
+import org.example.others.domin.HeroNode;
+import org.example.others.domin.HeroNode2;
 import org.junit.jupiter.api.Test;
 
 

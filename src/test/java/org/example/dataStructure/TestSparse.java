@@ -1,6 +1,6 @@
 package org.example.dataStructure;
 
-import org.example.algorithm.SparseArrayImpl;
+import org.example.others.algorithm.SparseArrayImpl;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -14,7 +14,7 @@ public class TestSparse {
         int[][] chessArr = new int[8][8];
         chessArr[1][2] = 1;
         chessArr[2][3] = 2;
-        org.example.dataInterface.SparseArray sa = new SparseArrayImpl();
+        org.example.others.dataInterface.SparseArray sa = new SparseArrayImpl();
 
         //稀疏化
         int[][] sparseArray = sa.toSparse(chessArr);

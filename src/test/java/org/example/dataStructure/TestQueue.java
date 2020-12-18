@@ -1,7 +1,7 @@
 package org.example.dataStructure;
 
-import org.example.algorithm.array.MyArrayRingQueue;
-import org.example.dataInterface.MyList;
+import org.example.others.algorithm.array.MyArrayRingQueue;
+import org.example.others.dataInterface.MyList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;

@@ -1,7 +1,7 @@
 package org.example.dataStructure;
 
-import org.example.algorithm.array.MyArrayStack;
-import org.example.algorithm.link.MyLinkedStack;
+import org.example.others.algorithm.array.MyArrayStack;
+import org.example.others.algorithm.link.MyLinkedStack;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
