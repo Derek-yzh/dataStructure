@@ -1,4 +1,4 @@
-package system.io;
+package org.example.io;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,6 +13,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 多线程 多路复用器
+ */
 public class SocketMultiplexingThreads {
 
     private ServerSocketChannel server = null;

@@ -1,4 +1,4 @@
-package system.io;
+package org.example.io;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -29,7 +29,7 @@ public class SocketMultiplexingThreadsV2 {
 class ServerBootStrap {
     private EventLoopGroup group;
     private EventLoopGroup chiledGroup;
-    ServerAcceptr sAcceptr;
+    ServerAccept sAcceptr;
     public ServerBootStrap group(EventLoopGroup boss, EventLoopGroup worker) {
         group = boss;
         chiledGroup = worker;
@@ -41,7 +41,7 @@ class ServerBootStrap {
          ServerSocketChannel server = ServerSocketChannel.open();
         server.configureBlocking(false);
         server.bind(new InetSocketAddress(port));
-        sAcceptr = new ServerAcceptr(chiledGroup, server);
+        sAcceptr = new ServerAccept(chiledGroup, server);
          EventLoop eventloop = group.chosser();
         //把启动server，bind端口的操作变成task，推送到eventloop中执行。
         eventloop.execute(new Runnable() {
@@ -114,10 +114,10 @@ class ClientReader implements Handler {
     }
 }
 
-class ServerAcceptr implements Handler {
+class ServerAccept implements Handler {
     ServerSocketChannel key;
     EventLoopGroup cGroup;
-    ServerAcceptr(EventLoopGroup cGroup, ServerSocketChannel server) {
+    ServerAccept(EventLoopGroup cGroup, ServerSocketChannel server) {
         this.key = server;
         this.cGroup = cGroup;
     }
@@ -181,7 +181,7 @@ class EventLoop implements Executor {
                     SelectionKey key = iter.next();
                     iter.remove();
                     Handler handler = (Handler) key.attachment();
-                    if (handler instanceof ServerAcceptr) {
+                    if (handler instanceof ServerAccept) {
                     } else if (handler instanceof ClientReader) {
                     }
                     handler.doRead();

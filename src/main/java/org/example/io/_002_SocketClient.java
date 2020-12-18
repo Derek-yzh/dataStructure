@@ -1,13 +1,12 @@
-package system.io;
+package org.example.io;
 
 import java.io.*;
 import java.net.Socket;
 
 /**
- * @author: 马士兵教育
- * @create: 2020-05-17 16:18
+ * 客户端
  */
-public class SocketClient {
+public class _002_SocketClient {
 
     public static void main(String[] args) {
 
@@ -15,7 +14,11 @@ public class SocketClient {
             Socket client = new Socket("192.168.150.11",9090);
 
             client.setSendBufferSize(20);
+
+            //true  延迟发送         askfjklsdjfjdskjf      会一起接收
+            //false 不延迟发送 ask    fjkl  sdjf  jds   kjf 会分散接收
             client.setTcpNoDelay(true);
+
             OutputStream out = client.getOutputStream();
 
             InputStream in = System.in;

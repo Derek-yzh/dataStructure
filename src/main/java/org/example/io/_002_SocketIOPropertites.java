@@ -1,4 +1,4 @@
-package system.io;
+package org.example.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,16 +7,11 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.StandardSocketOptions;
 
 /**
- * @author: 马士兵教育
- * @create: 2020-05-17 05:34
  * BIO  多线程的方式
- *
- *
  */
-public class SocketIOPropertites {
+public class _002_SocketIOPropertites {
 
 
 
@@ -27,7 +22,7 @@ public class SocketIOPropertites {
     private static final int BACK_LOG = 2;
     //client socket listen property on server endpoint:
     private static final boolean CLI_KEEPALIVE = false;
-    private static final boolean CLI_OOB = false;
+    private static final boolean CLI_OOB = false;//发送一个着急的 在发送其他的
     private static final int CLI_REC_BUF = 20;
     private static final boolean CLI_REUSE_ADDR = false;
     private static final int CLI_SEND_BUF = 20;
@@ -36,14 +31,12 @@ public class SocketIOPropertites {
     private static final int CLI_TIMEOUT = 0;
     private static final boolean CLI_NO_DELAY = false;
 /*
-
     StandardSocketOptions.TCP_NODELAY
     StandardSocketOptions.SO_KEEPALIVE
     StandardSocketOptions.SO_LINGER
     StandardSocketOptions.SO_RCVBUF
     StandardSocketOptions.SO_SNDBUF
     StandardSocketOptions.SO_REUSEADDR
-
  */
 
 
@@ -89,10 +82,10 @@ public class SocketIOPropertites {
                                     if (num > 0) {
                                         System.out.println("client read some data is :" + num + " val :" + new String(data, 0, num));
                                     } else if (num == 0) {
-                                        System.out.println("client readed nothing!");
+                                        System.out.println("client read nothing!");
                                         continue;
                                     } else {
-                                        System.out.println("client readed -1...");
+                                        System.out.println("client read -1...");
                                         client.close();
                                         break;
                                     }
