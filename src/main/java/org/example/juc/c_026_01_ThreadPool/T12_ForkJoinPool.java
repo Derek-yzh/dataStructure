@@ -7,6 +7,9 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.RecursiveTask;
 
+/**
+ *
+ */
 public class T12_ForkJoinPool {
 	static int[] nums = new int[1000000];
 	static final int MAX_NUM = 50000;

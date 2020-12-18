@@ -1,14 +1,15 @@
-/**
- * synchronized优化
- * 同步代码块中的语句越少越好
- * 比较m1和m2
- * @author org.example.mashibing
- */
 package org.example.juc.c_016_LockOptimization;
 
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * synchronized优化
+ * 同步代码块中的语句越少越好
+ * 比较m1和m2
+ *
+ * 锁粗化
+ * @author Derek
+ */
 public class FineCoarseLock {
 	
 	int count = 0;

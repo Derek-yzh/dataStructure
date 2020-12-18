@@ -1,21 +1,3 @@
-/**
- * ��N�Ż�Ʊ��ÿ��Ʊ����һ�����
- * ͬʱ��10�����ڶ�����Ʊ
- * ��дһ��ģ�����
- * 
- * ��������ĳ�����ܻ������Щ���⣿
- * �ظ����ۣ��������ۣ�
- * 
- * ʹ��Vector����Collections.synchronizedXXX
- * ����һ�£������ܽ��������
- * 
- * �������A��B����ͬ���ģ���A��B��ɵĸ��ϲ���Ҳδ����ͬ���ģ���Ȼ��Ҫ�Լ�����ͬ��
- * ������������ж�size�ͽ���remove������һ������ԭ�Ӳ���
- * 
- * ʹ��ConcurrentQueue��߲�����
- * 
- * @author ��ʿ��
- */
 package org.example.juc.c_024_FromVectorToQueue;
 
 import java.util.Queue;
@@ -26,7 +8,7 @@ public class TicketSeller4 {
 	
 	
 	static {
-		for(int i=0; i<1000; i++) tickets.add("Ʊ ��ţ�" + i);
+		for(int i=0; i<1000; i++) tickets.add("票编号" + i);
 	}
 	
 	public static void main(String[] args) {
@@ -36,7 +18,7 @@ public class TicketSeller4 {
 				while(true) {
 					String s = tickets.poll();
 					if(s == null) break;
-					else System.out.println("������--" + s);
+					else System.out.println("销售了--" + s);
 				}
 			}).start();
 		}

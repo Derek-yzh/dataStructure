@@ -1,9 +1,9 @@
+package org.example.juc.c_012_Volatile;
+
 /**
  * volatile 引用类型（包括数组）只能保证引用本身的可见性，不能保证内部字段的可见性
  */
-package org.example.juc.c_012_Volatile;
-
-public class T03________VolatileReference2 {
+public class T03_VolatileReference2 {
 
     private static class Data {
         int a, b;

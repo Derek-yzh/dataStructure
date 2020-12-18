@@ -4,6 +4,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Executors.newCachedThreadPool()
+ *	0核心 来一个任务启一个线程
+ * new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+ *                                       60L, TimeUnit.SECONDS,
+ *                                       new SynchronousQueue<Runnable>());
+ */
 public class T08_CachedPool {
 	public static void main(String[] args) throws InterruptedException {
 		ExecutorService service = Executors.newCachedThreadPool();

@@ -7,7 +7,6 @@ import sun.misc.Unsafe;
 public class HelloUnsafe {
     static class M {
         private M() {}
-
         int i =0;
     }
 

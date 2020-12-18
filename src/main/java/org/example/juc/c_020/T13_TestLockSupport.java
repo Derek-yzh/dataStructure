@@ -3,6 +3,9 @@ package org.example.juc.c_020;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
+/**
+ * LockSupport 应用
+ */
 public class T13_TestLockSupport {
     public static void main(String[] args) {
         Thread t = new Thread(()->{
@@ -22,7 +25,6 @@ public class T13_TestLockSupport {
         t.start();
 
         LockSupport.unpark(t);
-
         /*try {
             TimeUnit.SECONDS.sleep(8);
         } catch (InterruptedException e) {

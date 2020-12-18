@@ -1,8 +1,3 @@
-/**
- * volatile�����ܱ�֤����̹߳�ͬ�޸�running����ʱ�������Ĳ�һ�����⣬Ҳ����˵volatile�������synchronized
- * ��������ĳ��򣬲��������
- * @author org.example.mashibing
- */
 package org.example.juc.c_012_Volatile;
 
 import java.util.ArrayList;
@@ -17,14 +12,15 @@ public class T04_VolatileNotSync {
 	public static void main(String[] args) {
 		T04_VolatileNotSync t = new T04_VolatileNotSync();
 		
-		List<Thread> threads = new ArrayList<Thread>();
+		List<Thread> threads = new ArrayList<>();
 		
-		for(int i=0; i<10; i++) {
+		for(int i=0; i< 10; i++) {
 			threads.add(new Thread(t::m, "thread-"+i));
 		}
 		
-		threads.forEach((o)->o.start());
-		
+		//threads.forEach((o)->o.start());
+		threads.forEach(Thread::start);
+
 		threads.forEach((o)->{
 			try {
 				o.join();

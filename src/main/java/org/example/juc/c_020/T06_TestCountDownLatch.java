@@ -2,7 +2,11 @@ package org.example.juc.c_020;
 
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * CountDownLatch
+ */
 public class T06_TestCountDownLatch {
+
     public static void main(String[] args) {
         usingJoin();
         usingCountDownLatch();

@@ -4,6 +4,13 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * result
+ *
+ * 411
+ * 1000000
+ * 1042
+ */
 public class T04_TestConcurrentHashMap {
 
     static Map<UUID, UUID> m = new ConcurrentHashMap<>();

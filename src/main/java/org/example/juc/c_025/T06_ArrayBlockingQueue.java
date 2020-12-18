@@ -16,10 +16,10 @@ public class T06_ArrayBlockingQueue {
 			strs.put("a" + i);
 		}
 		
-		//strs.put("aaa"); //���˾ͻ�ȴ�����������
-		//strs.add("aaa");
-		//strs.offer("aaa");
-		strs.offer("aaa", 1, TimeUnit.SECONDS);
+		//strs.put("aaa"); //满了会阻塞
+		//strs.add("aaa"); //满了会报异常
+		//strs.offer("aaa"); //满了会返回false
+		strs.offer("aaa", 5, TimeUnit.SECONDS);//满了会阻塞5s
 		
 		System.out.println(strs);
 	}

@@ -1,7 +1,3 @@
-/**
- * ��ʶExecutorService,�Ķ�API�ĵ�
- * ��ʶsubmit��������չ��execute����������һ������ֵ
- */
 package org.example.juc.c_026_01_ThreadPool;
 
 import java.util.concurrent.ExecutorService;

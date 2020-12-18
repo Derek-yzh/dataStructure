@@ -5,7 +5,8 @@ import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Derek
+ * 应用 Phaser
+ *
  * 按不同阶段执行
  * 例如：结婚
  *      1.到齐
@@ -66,6 +67,7 @@ public class T08_TestPhaser {
                 default:
                     return true;
             }
+
         }
     }
 

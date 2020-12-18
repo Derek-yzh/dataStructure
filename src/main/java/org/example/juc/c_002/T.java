@@ -1,9 +1,3 @@
-/**
- * synchronized�ؼ���
- * ��ĳ���������
- * @author org.example.mashibing
- */
-
 package org.example.juc.c_002;
 
 public class T {
@@ -11,7 +5,7 @@ public class T {
 	private int count = 10;
 	
 	public void m() {
-		synchronized(this) { //�κ��߳�Ҫִ������Ĵ��룬�������õ�this����
+		synchronized(this) {
 			count--;
 			System.out.println(Thread.currentThread().getName() + " count = " + count);
 		}

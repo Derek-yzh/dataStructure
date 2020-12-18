@@ -1,3 +1,7 @@
+package org.example.juc.c_022_RefTypeAndThreadLocal;
+
+import java.lang.ref.SoftReference;
+
 /**
  * 软引用
  * 软引用是用来描述一些还有用但并非必须的对象。
@@ -5,16 +9,13 @@
  * 如果这次回收还没有足够的内存，才会抛出内存溢出异常。
  * -Xmx20M
  */
-package org.example.juc.c_022_RefTypeAndThreadLocal;
-
-import java.lang.ref.SoftReference;
-
 public class T02_SoftReference {
     public static void main(String[] args) {
         SoftReference<byte[]> m = new SoftReference<>(new byte[1024*1024*10]);
         //m = null;
         System.out.println(m.get());
         System.gc();
+
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

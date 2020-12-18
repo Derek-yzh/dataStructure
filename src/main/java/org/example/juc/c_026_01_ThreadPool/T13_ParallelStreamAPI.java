@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 	流式API
+ */
 public class T13_ParallelStreamAPI {
 	public static void main(String[] args) {
 		List<Integer> nums = new ArrayList<>();
@@ -17,7 +20,7 @@ public class T13_ParallelStreamAPI {
 		long end = System.currentTimeMillis();
 		System.out.println(end - start);
 		
-		//ʹ��parallel stream api
+		//use parallel stream api
 		
 		start = System.currentTimeMillis();
 		nums.parallelStream().forEach(T13_ParallelStreamAPI::isPrime);

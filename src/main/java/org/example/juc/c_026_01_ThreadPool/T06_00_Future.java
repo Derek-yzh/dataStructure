@@ -2,6 +2,9 @@ package org.example.juc.c_026_01_ThreadPool;
 
 import java.util.concurrent.*;
 
+/**
+ * FutureTask
+ */
 public class T06_00_Future {
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		

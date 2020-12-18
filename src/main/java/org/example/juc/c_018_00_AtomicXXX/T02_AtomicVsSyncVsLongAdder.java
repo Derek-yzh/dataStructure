@@ -4,6 +4,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 
+/**
+ * 测试对比时间
+ * Atomic: 100000000 time 1995
+ * Sync: 100000000 time 3068
+ * LongAdder: 100000000 time 620
+ */
 public class T02_AtomicVsSyncVsLongAdder {
     static long count2 = 0L;
     static AtomicLong count1 = new AtomicLong(0L);
@@ -35,15 +41,11 @@ public class T02_AtomicVsSyncVsLongAdder {
 
         for(int i=0; i<threads.length; i++) {
             threads[i] =
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        for (int k = 0; k < 100000; k++)
-                            synchronized (lock) {
-                                count2++;
-                            }
-                    }
+                new Thread(() -> {
+                    for (int k = 0; k < 100000; k++)
+                        synchronized (lock) {
+                            count2++;
+                        }
                 });
         }
 

@@ -1,12 +1,3 @@
-/**
- * �����⣺ģ�������˻�
- * ��ҵ��д��������
- * ��ҵ�������������
- * �����в��У�
- *
- * ���ײ���������⣨dirtyRead��
- */
-
 package org.example.juc.c_008;
 
 import java.util.concurrent.TimeUnit;

@@ -1,5 +1,12 @@
+package org.example.juc.c_022_RefTypeAndThreadLocal;
+
+import java.lang.ref.PhantomReference;
+import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
- *
  *
  *     一个对象是否有虚引用的存在，完全不会对其生存时间构成影响，
  *     也无法通过虚引用来获取一个对象的实例。
@@ -19,16 +26,6 @@
  *     DirectByteBuffer就是通过虚引用来实现堆外内存的释放的。
  *
  */
-
-
-package org.example.juc.c_022_RefTypeAndThreadLocal;
-
-import java.lang.ref.PhantomReference;
-import java.lang.ref.Reference;
-import java.lang.ref.ReferenceQueue;
-import java.util.LinkedList;
-import java.util.List;
-
 public class T04_PhantomReference {
     private static final List<Object> LIST = new LinkedList<>();
     private static final ReferenceQueue<M> QUEUE = new ReferenceQueue<>();

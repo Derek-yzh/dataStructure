@@ -1,6 +1,3 @@
-/**
- *
- */
 package org.example.juc.c_026_01_ThreadPool;
 
 import java.io.IOException;
@@ -8,6 +5,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Executors.newWorkStealingPool();
+ *
+ * new ForkJoinPool
+ *             (Runtime.getRuntime().availableProcessors(),
+ *              ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+ *              null, true);
+ */
 public class T11_WorkStealingPool {
 	public static void main(String[] args) throws IOException {
 		ExecutorService service = Executors.newWorkStealingPool();

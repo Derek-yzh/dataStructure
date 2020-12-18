@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 
 public class T04_NotifyFreeLock {
 
-	//���volatile��ʹt2�ܹ��õ�֪ͨ
 	volatile List lists = new ArrayList();
 
 	public void add(Object o) {
@@ -43,7 +42,7 @@ public class T04_NotifyFreeLock {
 		
 		new Thread(() -> {
 			synchronized(lock) {
-				System.out.println("t2����");
+				System.out.println("t2 start");
 				if(c.size() != 5) {
 					try {
 						lock.wait();
@@ -51,8 +50,7 @@ public class T04_NotifyFreeLock {
 						e.printStackTrace();
 					}
 				}
-				System.out.println("t2 ����");
-				//֪ͨt1����ִ��
+				System.out.println("t2 end");
 				lock.notify();
 			}
 			
@@ -65,7 +63,7 @@ public class T04_NotifyFreeLock {
 		}
 
 		new Thread(() -> {
-			System.out.println("t1����");
+			System.out.println("t1 start");
 			synchronized(lock) {
 				for(int i=0; i<10; i++) {
 					c.add(new Object());
@@ -73,7 +71,6 @@ public class T04_NotifyFreeLock {
 					
 					if(c.size() == 5) {
 						lock.notify();
-						//�ͷ�������t2����ִ��
 						try {
 							lock.wait();
 						} catch (InterruptedException e) {

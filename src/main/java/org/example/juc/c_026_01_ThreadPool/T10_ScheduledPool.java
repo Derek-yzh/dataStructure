@@ -5,6 +5,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Executors.newScheduledThreadPool(4)
+ * ThreadPoolExecutor(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+ *               new DelayedWorkQueue());
+ * 给定时任务用的ThreadPool
+ */
 public class T10_ScheduledPool {
 	public static void main(String[] args) {
 		ScheduledExecutorService service = Executors.newScheduledThreadPool(4);

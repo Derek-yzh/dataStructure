@@ -1,6 +1,3 @@
-/**
- * 代码不好维护
- */
 package org.example.juc.c_027_future_to_loom;
 
 import com.google.common.util.concurrent.*;
@@ -9,6 +6,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
+/**
+ * 代码不好维护
+ */
 public class T02_ListenableFuture {
     public static void main(String[] args) {
         ListeningExecutorService service =

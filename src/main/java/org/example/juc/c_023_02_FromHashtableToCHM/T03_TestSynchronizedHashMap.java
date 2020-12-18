@@ -5,6 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * result
+ *
+ * 437
+ * 1000000
+ * 32248
+ */
 public class T03_TestSynchronizedHashMap {
 
     static Map<UUID, UUID> m = Collections.synchronizedMap(new HashMap<UUID, UUID>());

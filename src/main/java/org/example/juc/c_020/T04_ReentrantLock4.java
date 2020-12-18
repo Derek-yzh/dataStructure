@@ -1,25 +1,16 @@
-/**
- * reentrantlock�������synchronized
- * ����m1����this,ֻ��m1ִ����ϵ�ʱ��,m2����ִ��
- * �����Ǹ�ϰsynchronized��ԭʼ������
- * 
- * ʹ��reentrantlock�������ͬ���Ĺ���
- * ��Ҫע����ǣ�����Ҫ����Ҫ����Ҫ�ֶ��ͷ�������Ҫ������˵���飩
- * ʹ��syn�����Ļ���������쳣��org.example.jvm���Զ��ͷ���������lock�����ֶ��ͷ�������˾�����finally�н��������ͷ�
- * 
- * ʹ��reentrantlock���Խ��С�����������tryLock�������޷�������������ָ��ʱ�����޷��������߳̿��Ծ����Ƿ�����ȴ�
- * 
- * ʹ��ReentrantLock�����Ե���lockInterruptibly���������Զ��߳�interrupt����������Ӧ��
- * ��һ���̵߳ȴ����Ĺ����У����Ա����
- * 
- * @author org.example.mashibing
- */
 package org.example.juc.c_020;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * lock.lockInterruptibly()应用
+ *
+ * Lock lock = new ReentrantLock();
+ * lock.lockInterruptibly();//可以对interrupt()方法做出响应
+ *
+ */
 public class T04_ReentrantLock4 {
 		
 	public static void main(String[] args) {
@@ -43,7 +34,7 @@ public class T04_ReentrantLock4 {
 		Thread t2 = new Thread(()->{
 			try {
 				//lock.lock();
-				lock.lockInterruptibly(); //���Զ�interrupt()����������Ӧ
+				lock.lockInterruptibly();//可以对interrupt()方法做出响应
 				System.out.println("t2 start");
 				TimeUnit.SECONDS.sleep(5);
 				System.out.println("t2 end");
@@ -60,7 +51,7 @@ public class T04_ReentrantLock4 {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		t2.interrupt(); //����߳�2�ĵȴ�
+		t2.interrupt();//打断线程2的等待
 		
 	}
 }

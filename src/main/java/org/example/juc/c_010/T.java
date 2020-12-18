@@ -1,9 +1,3 @@
-/**
- * һ��ͬ���������Ե�������һ��ͬ��������һ���߳��Ѿ�ӵ��ĳ������������ٴ������ʱ����Ȼ��õ��ö������.
- * Ҳ����˵synchronized��õ����ǿ������
- * �����Ǽ̳����п��ܷ��������Σ�������ø����ͬ������
- * @author org.example.mashibing
- */
 package org.example.juc.c_010;
 
 import java.util.concurrent.TimeUnit;

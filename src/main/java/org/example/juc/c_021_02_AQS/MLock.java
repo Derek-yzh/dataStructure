@@ -1,13 +1,12 @@
-/**
- * 通过AQS实现自定义锁，目前仅实现了lock和unlock
- * @author 马士兵
- */
 package org.example.juc.c_021_02_AQS;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
+/**
+ * 通过AQS实现自定义锁，目前仅实现了lock和unlock
+ */
 public class MLock implements Lock {
 
     private Sync sync = new Sync();

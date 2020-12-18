@@ -1,13 +1,10 @@
-/**
- * reentrantlock�������synchronized
- * ����������m1����this,ֻ��m1ִ����ϵ�ʱ��,m2����ִ��
- * �����Ǹ�ϰsynchronized��ԭʼ������
- * @author org.example.mashibing
- */
 package org.example.juc.c_020;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 可重入锁
+ */
 public class T01_ReentrantLock1 {
 	synchronized void m1() {
 		for(int i=0; i<10; i++) {

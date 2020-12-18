@@ -19,10 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * wait notify
+ */
+public class T03_NotifyHoldingLock {
 
-public class T03_NotifyHoldingLock { //wait notify
-
-	//���volatile��ʹt2�ܹ��õ�֪ͨ
 	volatile List lists = new ArrayList();
 
 	public void add(Object o) {
@@ -40,7 +41,7 @@ public class T03_NotifyHoldingLock { //wait notify
 		
 		new Thread(() -> {
 			synchronized(lock) {
-				System.out.println("t2����");
+				System.out.println("t2 start");
 				if(c.size() != 5) {
 					try {
 						lock.wait();
@@ -48,7 +49,7 @@ public class T03_NotifyHoldingLock { //wait notify
 						e.printStackTrace();
 					}
 				}
-				System.out.println("t2 ����");
+				System.out.println("t2 end");
 			}
 			
 		}, "t2").start();
@@ -60,14 +61,14 @@ public class T03_NotifyHoldingLock { //wait notify
 		}
 
 		new Thread(() -> {
-			System.out.println("t1����");
+			System.out.println("t1 start");
 			synchronized(lock) {
 				for(int i=0; i<10; i++) {
 					c.add(new Object());
 					System.out.println("add " + i);
 					
 					if(c.size() == 5) {
-						lock.notify();
+						lock.notify();//notify()不释放锁
 					}
 					
 					try {

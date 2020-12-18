@@ -1,14 +1,10 @@
-/**
- * ����ĳ����o�����o�����Է����ı䣬��Ӱ������ʹ��
- * �������o�������һ�������������Ķ������ı�
- * Ӧ�ñ��⽫������������ñ������Ķ���
- * @author org.example.mashibing
- */
 package org.example.juc.c_017_MoreAboutSync;
 
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * 锁对象如果改变 锁会失效
+ */
 public class SyncSameObject {
 	
 	/*final*/ Object o = new Object();
@@ -22,15 +18,13 @@ public class SyncSameObject {
 					e.printStackTrace();
 				}
 				System.out.println(Thread.currentThread().getName());
-				
-				
 			}
 		}
 	}
 	
 	public static void main(String[] args) {
 		SyncSameObject t = new SyncSameObject();
-		//������һ���߳�
+
 		new Thread(t::m, "t1").start();
 		
 		try {
@@ -38,11 +32,11 @@ public class SyncSameObject {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//�����ڶ����߳�
+
 		Thread t2 = new Thread(t::m, "t2");
 		
-		t.o = new Object(); //���������ı䣬����t2�̵߳���ִ�У����ע�͵���仰���߳�2����Զ�ò���ִ�л���
-		
+		t.o = new Object();
+
 		t2.start();
 		
 	}

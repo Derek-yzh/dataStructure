@@ -1,9 +1,3 @@
-/**
- * 假设你能够提供一个服务
- * 这个服务查询各大电商网站同一类产品的价格并汇总展示
- * @author 马士兵 http://mashibing.com
- */
-
 package org.example.juc.c_026_01_ThreadPool;
 
 import java.io.IOException;
@@ -12,6 +6,10 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 假设你能够提供一个服务
+ * 这个服务查询各大电商网站同一类产品的价格并汇总展示
+ */
 public class T06_01_CompletableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         long start, end;

@@ -4,7 +4,12 @@ import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
 
+/**
+ * BlockingQueue
+ * put take 接口	底层用的LockSupport.park();
+ */
 public class T05_LinkedBlockingQueue {
 
 	static BlockingQueue<String> strs = new LinkedBlockingQueue<>();
@@ -15,7 +20,7 @@ public class T05_LinkedBlockingQueue {
 		new Thread(() -> {
 			for (int i = 0; i < 100; i++) {
 				try {
-					strs.put("a" + i); //������ˣ��ͻ�ȴ�
+					strs.put("a" + i); //如果满了就会等待
 					TimeUnit.MILLISECONDS.sleep(r.nextInt(1000));
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -27,7 +32,7 @@ public class T05_LinkedBlockingQueue {
 			new Thread(() -> {
 				for (;;) {
 					try {
-						System.out.println(Thread.currentThread().getName() + " take -" + strs.take()); //������ˣ��ͻ�ȴ�
+						System.out.println(Thread.currentThread().getName() + " take " + strs.take()); //如果为空就会等待
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

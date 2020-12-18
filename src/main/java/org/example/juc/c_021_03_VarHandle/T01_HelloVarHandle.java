@@ -1,5 +1,11 @@
 package org.example.juc.c_021_03_VarHandle;
 
+/**
+ * 1.9之后才有
+ * VarHandle
+ * 1.普通属性原子操作
+ * 2.比反射快，直接操作二进制码
+ */
 public class T01_HelloVarHandle {
 /*
     int x = 8;

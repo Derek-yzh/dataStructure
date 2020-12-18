@@ -1,8 +1,3 @@
-/**
- * �Ա�����һ��С���򣬷���һ�������������
- * @author org.example.mashibing
- */
-
 package org.example.juc.c_006;
 
 public class T implements Runnable {

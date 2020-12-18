@@ -1,6 +1,3 @@
-/**
- * �̳߳صĸ���
- */
 package org.example.juc.c_026_01_ThreadPool;
 
 import java.util.concurrent.ExecutorService;

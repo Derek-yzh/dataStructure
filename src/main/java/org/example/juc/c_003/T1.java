@@ -10,7 +10,7 @@ public class T1 {
 		System.out.println(Thread.currentThread().getName() + " count = " + count);
 	}
 
-	public void n() { //�������������ʱ����Ҫ����
+	public void n() {
 		count++;
 	}
 }

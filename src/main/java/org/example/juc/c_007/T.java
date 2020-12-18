@@ -32,7 +32,7 @@ public class T {
 		new Thread(t::m2, "t2").start();
 		
 		/*
-		//1.8֮ǰ��д��
+		//1.8֮
 		new Thread(new Runnable() {
 
 			@Override

@@ -1,21 +1,20 @@
-/**
- * �����������⣺���Ա�����
- * ʵ��һ���������ṩ����������add��size
- * д�����̣߳��߳�1���10��Ԫ�ص������У��߳�2ʵ�ּ��Ԫ�صĸ�������������5��ʱ���߳�2������ʾ������
- * 
- * �����������������������������
- * @author org.example.mashibing
- */
 package org.example.juc.c_020_01_Interview;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ *		实现一个容器，提供两个方法，add，size
+ *		写两个线程，线程1添加10个元素到容器中，线程2实现监控容器个数，
+ *		当个数到5个时，线程2给出提示并结束
+ */
 public class T01_WithoutVolatile {
 
-	List lists = new ArrayList();
+	static CountDownLatch countDownLatch = new CountDownLatch(5);
+
+	/*volatile*/ List lists = new ArrayList();
 
 	public void add(Object o) {
 		lists.add(o);
@@ -32,6 +31,8 @@ public class T01_WithoutVolatile {
 			for(int i=0; i<10; i++) {
 				c.add(new Object());
 				System.out.println("add " + i);
+
+				//countDownLatch.countDown();
 				
 				try {
 					TimeUnit.SECONDS.sleep(1);
@@ -47,7 +48,14 @@ public class T01_WithoutVolatile {
 					break;
 				}
 			}
-			System.out.println("t2 ����");
+			/*try {
+				countDownLatch.await();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}*/
+			System.out.println("t2 over");
 		}, "t2").start();
+
 	}
+
 }

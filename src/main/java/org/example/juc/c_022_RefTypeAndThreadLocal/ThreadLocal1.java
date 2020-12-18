@@ -1,8 +1,3 @@
-/**
- * ThreadLocal�ֲ߳̾�����
- * 
- * @author ��ʿ��
- */
 package org.example.juc.c_022_RefTypeAndThreadLocal;
 
 import java.util.concurrent.TimeUnit;

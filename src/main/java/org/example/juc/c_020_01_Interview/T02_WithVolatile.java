@@ -1,23 +1,13 @@
-/**
- * �����������⣺���Ա�����
- * ʵ��һ���������ṩ����������add��size
- * д�����̣߳��߳�1���10��Ԫ�ص������У��߳�2ʵ�ּ��Ԫ�صĸ�������������5��ʱ���߳�2������ʾ������
- * 
- * ��lists���volatile֮��t2�ܹ��ӵ�֪ͨ�����ǣ�t2�̵߳���ѭ�����˷�cpu�����������ѭ����
- * ���ң������if �� break֮�䱻����̴߳�ϣ��õ��Ľ��Ҳ����ȷ��
- * ����ô���أ�
- * @author org.example.mashibing
- */
 package org.example.juc.c_020_01_Interview;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class T02_WithVolatile {
 
-	//���volatile��ʹt2�ܹ��õ�֪ͨ
 	//volatile List lists = new LinkedList();
 	volatile List lists = Collections.synchronizedList(new LinkedList<>());
 
@@ -37,11 +27,11 @@ public class T02_WithVolatile {
 				c.add(new Object());
 				System.out.println("add " + i);
 				
-				/*try {
+				try {
 					TimeUnit.SECONDS.sleep(1);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				}*/
+				}
 			}
 		}, "t1").start();
 		
@@ -51,7 +41,7 @@ public class T02_WithVolatile {
 					break;
 				}
 			}
-			System.out.println("t2 ����");
+			System.out.println("t2 over");
 		}, "t2").start();
 	}
 }

@@ -1,15 +1,3 @@
-/**
- * ��N�Ż�Ʊ��ÿ��Ʊ����һ�����
- * ͬʱ��10�����ڶ�����Ʊ
- * ��дһ��ģ�����
- * 
- * ��������ĳ�����ܻ������Щ���⣿
- *  
- * ʹ��Vector����Collections.synchronizedXXX
- * ����һ�£������ܽ��������
- * 
- * @author ��ʿ��
- */
 package org.example.juc.c_024_FromVectorToQueue;
 
 import java.util.Vector;
@@ -17,10 +5,9 @@ import java.util.concurrent.TimeUnit;
 
 public class TicketSeller2 {
 	static Vector<String> tickets = new Vector<>();
-	
-	
+
 	static {
-		for(int i=0; i<1000; i++) tickets.add("Ʊ ��ţ�" + i);
+		for(int i=0; i<1000; i++) tickets.add("票编号" + i);
 	}
 	
 	public static void main(String[] args) {
@@ -34,9 +21,8 @@ public class TicketSeller2 {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					
-					
-					System.out.println("������--" + tickets.remove(0));
+
+					System.out.println("销售了--" + tickets.remove(0));
 				}
 			}).start();
 		}

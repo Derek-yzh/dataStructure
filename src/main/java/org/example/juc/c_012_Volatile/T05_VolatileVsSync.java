@@ -1,7 +1,3 @@
-/**
- * �Ա���һ�����򣬿�����synchronized�����synchronized���Ա�֤�ɼ��Ժ�ԭ���ԣ�volatileֻ�ܱ�֤�ɼ���
- * @author org.example.mashibing
- */
 package org.example.juc.c_012_Volatile;
 
 import java.util.ArrayList;

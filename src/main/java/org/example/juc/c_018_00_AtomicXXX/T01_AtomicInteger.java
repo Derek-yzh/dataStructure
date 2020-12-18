@@ -1,8 +1,3 @@
-/**
- * ���ͬ��������ĸ���Ч�ķ�����ʹ��AtomXXX��
- * AtomXXX�౾��������ԭ���Եģ������ܱ�֤�����������������ԭ���Ե�
- * @author org.example.mashibing
- */
 package org.example.juc.c_018_00_AtomicXXX;
 
 import java.util.ArrayList;

@@ -1,16 +1,12 @@
-/**
- * 线程安全的单例模式：
- * 
- * 阅读文章：http://www.cnblogs.com/xudong-bupt/p/3433643.html
- * 
- * 更好的是采用下面的方式，既不用加锁，也能实现懒加载
- * 
- * @author 马士兵
- */
 package org.example.juc.c_023;
 
 import java.util.Arrays;
 
+/**
+ * 线程安全的单例模式：
+ *
+ * 更好的是采用下面的方式，既不用加锁，也能实现懒加载
+ */
 public class Singleton {
 	
 	private Singleton() {

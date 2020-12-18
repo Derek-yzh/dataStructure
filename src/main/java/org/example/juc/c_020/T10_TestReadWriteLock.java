@@ -6,6 +6,11 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+ * 读写锁
+ *
+ * ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+ */
 public class T10_TestReadWriteLock {
     static Lock lock = new ReentrantLock();
     private static int value;
@@ -40,10 +45,6 @@ public class T10_TestReadWriteLock {
             lock.unlock();
         }
     }
-
-
-
-
 
     public static void main(String[] args) {
         //Runnable readR = ()-> read(lock);

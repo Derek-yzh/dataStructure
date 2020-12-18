@@ -1,7 +1,13 @@
 package org.example.juc.c_020;
 
 import java.util.concurrent.Exchanger;
+import java.util.concurrent.TimeUnit;
 
+/**
+ * Exchanger
+ *
+ * static Exchanger<String> exchanger = new Exchanger<>();
+ */
 public class T12_TestExchanger {
 
     static Exchanger<String> exchanger = new Exchanger<>();

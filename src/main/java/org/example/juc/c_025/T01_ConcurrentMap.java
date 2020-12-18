@@ -1,18 +1,19 @@
-/**
- * http://blog.csdn.net/sunxianghuang/article/details/52221913 
- * http://www.educity.cn/java/498061.html
- * �Ķ�concurrentskiplistmap
- */
 package org.example.juc.c_025;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ *
+ * TreeMap 底层红黑树 查找效率高 但cas操作在tree上实现太复杂了
+ * Map<String, String> map = new ConcurrentSkipListMap<>(); //跳表实现高并发且排序
+ *
+ */
 public class T01_ConcurrentMap {
 	public static void main(String[] args) {
 		Map<String, String> map = new ConcurrentHashMap<>();
-		//Map<String, String> map = new ConcurrentSkipListMap<>(); //�߲�����������
+		//Map<String, String> map = new ConcurrentSkipListMap<>(); //跳表实现高并发且排序
 		
 		//Map<String, String> map = new Hashtable<>();
 		//Map<String, String> map = new HashMap<>(); //Collections.synchronizedXXX

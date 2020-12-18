@@ -3,6 +3,13 @@ package org.example.juc.c_023_02_FromHashtableToCHM;
 import java.util.Hashtable;
 import java.util.UUID;
 
+/**
+ * result
+ *
+ * 727
+ * 1000000
+ * 31237
+ */
 public class T01_TestHashtable {
 
     static Hashtable<UUID, UUID> m = new Hashtable<>();

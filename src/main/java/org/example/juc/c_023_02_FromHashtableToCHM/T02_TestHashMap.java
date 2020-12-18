@@ -3,6 +3,12 @@ package org.example.juc.c_023_02_FromHashtableToCHM;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * result
+ *
+ * 175
+ * 716290
+ */
 public class T02_TestHashMap {
 
     static HashMap<UUID, UUID> m = new HashMap<>();
