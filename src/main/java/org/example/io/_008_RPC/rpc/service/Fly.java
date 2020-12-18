@@ -6,5 +6,5 @@ package org.example.io._008_RPC.rpc.service;
  * @Description: TODO
  */
 public interface Fly {
-    void ooxx(String msg);
+     Person ooxx(String str, int i);
 }

@@ -1,6 +1,7 @@
 package org.example.io._008_RPC.rpc.service.impl;
 
 import org.example.io._008_RPC.rpc.service.Fly;
+import org.example.io._008_RPC.rpc.service.Person;
 
 /**
  * @Author: Derek
@@ -8,8 +9,9 @@ import org.example.io._008_RPC.rpc.service.Fly;
  * @Description: TODO
  */
 public class MyFly implements Fly {
+
     @Override
-    public void ooxx(String msg) {
-        System.out.println("Fly::ooxx...");
+    public Person ooxx(String str, int i) {
+        return new Person(str,i);
     }
 }
