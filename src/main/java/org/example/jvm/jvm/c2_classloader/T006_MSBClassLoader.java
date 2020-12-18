@@ -31,8 +31,8 @@ public class T006_MSBClassLoader extends ClassLoader {
 
     public static void main(String[] args) throws Exception {
         ClassLoader l = new T006_MSBClassLoader();
-        Class clazz = l.loadClass("com.org.example.mashibing.org.example.jvm.Hello");
-        Class clazz1 = l.loadClass("com.org.example.mashibing.org.example.jvm.Hello");
+        Class clazz = l.loadClass("org.example.jvm.jvm.c2_classloader.Hello");
+        Class clazz1 = l.loadClass("org.example.jvm.vm.c2_classloader.Hello");
 
         System.out.println(clazz == clazz1);
 
