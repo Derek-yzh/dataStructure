@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  *   排序80000条数据大约需要3秒
  */
-public class Select {
+public class _002_Select {
     private static int[] arr = {101,34,119,1,-1,123,90};
 
     public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class Select {
     }
 
     public static void selectSort(int[] arr){
-        int min = 0;
+        int min = arr[0];
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
             min = arr[i];

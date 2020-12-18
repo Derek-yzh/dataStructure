@@ -15,7 +15,7 @@ import java.util.Arrays;
  *
  *  排序80000条数据大约650微秒 不到一秒
  */
-public class Insert {
+public class _003_Insert {
     private static int[] arr = {101,34,119,1,-1,123,90};
 
     public static void main(String[] args) {
@@ -44,7 +44,7 @@ public class Insert {
         for (int i = 1; i < arr.length; i++) {
             index = i - 1;
             val = arr[i];
-            while (index >= 0 && val < arr[index]){
+            while (index >= 0 && arr[index] > val){
                 arr[index+1] = arr[index];
                 index--;
             }

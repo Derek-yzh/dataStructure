@@ -8,7 +8,7 @@ import java.util.Arrays;
  * 根据首尾指针锁定中间位置将数组分为两部分 递归
  * 排序8_000_000条数据大约1300微秒 1.3s
  */
-public class QuickSort {
+public class _005_QuickSort {
     private static int[] arr = {-9,78,0,23,-567,70};
 
     public static void main(String[] args) {

@@ -9,7 +9,7 @@ import java.util.Arrays;
  *
  * 排序8_000_000条数据大约600微秒
  */
-public class RadixSort {
+public class _007_RadixSort {
     private static int[] arr = {53,3,542,748,14,214};
 
     public static void main(String[] args) {
