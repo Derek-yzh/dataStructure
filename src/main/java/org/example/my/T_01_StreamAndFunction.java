@@ -67,14 +67,11 @@ public class T_01_StreamAndFunction {
         Predicate<String> predicate = String::isEmpty;//断定型接口
         System.out.println(predicate.test("aa"));
 
-        Consumer<String> consumer = System.out::println;
+        Consumer<String> consumer = System.out::println;//消费性接口
         consumer.accept("consumer");
 
-        Supplier<String> supplier = ()-> "a";
+        Supplier<String> supplier = ()-> "a";//供给型接口
         System.out.println(supplier.get());
-
-        System.out.println();
-
 
     }
 }

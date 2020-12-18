@@ -15,7 +15,4 @@ public class App {
         System.out.println(df.format(day));
     }
 
-    public static void main(String[] args) {
-        App.nowTime();
-    }
 }
