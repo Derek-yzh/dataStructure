@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  *   排序80000条数据大约需要11秒
  */
-public class Bubble {
+public class _001_Bubble {
     private static int[] arr = {3,9,-1,10,20};
 
     public static void main(String[] args) {
@@ -48,8 +48,6 @@ public class Bubble {
             }else {
                 break;
             }
-            /*System.out.print("第"+(i+1)+"次排序后的数组:");
-            System.out.println(Arrays.toString(arr));*/
         }
     }
 }

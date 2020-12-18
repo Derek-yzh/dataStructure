@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * 排序8_000_000条数据大约2500微秒 2.5s
  */
-public class ShellSort {
+public class _004_ShellSort {
     private static int[] arr = {8,9,1,7,2,3,5,4,6,0};
 
     public static void main(String[] args) {

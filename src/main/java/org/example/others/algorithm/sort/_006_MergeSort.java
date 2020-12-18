@@ -9,7 +9,7 @@ import java.util.Arrays;
  *
  * 排序8_000_000条数据大约1300微秒 1.3s
  */
-public class MergeSort {
+public class _006_MergeSort {
     private static int[] arr = {101,34,119,1,-1,123,90};
 
     public static void main(String[] args) {

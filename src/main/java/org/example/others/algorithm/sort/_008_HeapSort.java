@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
  * 2020-07-14 12:07:27
  * 8_000_000条数据大约2600微妙
  */
-public class HeapSort {
+public class _008_HeapSort {
     public static void main(String[] args) {
         /*int[] arr = {4,6,8,5,9,5,-1,34};
         heapSort(arr);
