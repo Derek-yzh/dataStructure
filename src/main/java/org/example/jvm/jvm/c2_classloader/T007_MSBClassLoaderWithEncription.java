@@ -35,10 +35,10 @@ public class T007_MSBClassLoaderWithEncription extends ClassLoader {
 
     public static void main(String[] args) throws Exception {
 
-        encFile("com.mashibing.jvm.hello");
+        encFile("com.org.example.mashibing.org.example.jvm.hello");
 
         ClassLoader l = new T007_MSBClassLoaderWithEncription();
-        Class clazz = l.loadClass("com.mashibing.jvm.Hello");
+        Class clazz = l.loadClass("com.org.example.mashibing.org.example.jvm.Hello");
         Hello h = (Hello)clazz.newInstance();
         h.m();
 

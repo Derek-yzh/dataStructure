@@ -1,23 +1,28 @@
-import designPattern.prototypePattern.improve.Person;
+import java.util.HashSet;
+import java.util.Random;
 
-import java.io.Serializable;
-
+/**
+ * @Author: Derek
+ * @DateTime: 2020/12/17 21:58
+ * @Description: TODO
+ */
 public class Test {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
+        Random random = new Random();
+        HashSet<Integer> set = new HashSet<>();
+        while (set.size() != 5){
+            int i = random.nextInt(100);
+            set.add(i);
+        }
 
-        char c1 = 97;
-        System.out.println(c1);
-
-
-        char c2 = 98;
-        System.out.println(c2);
-
-
-
+        System.out.println(set);
     }
 
-
 }
+
+
+
+
 
 

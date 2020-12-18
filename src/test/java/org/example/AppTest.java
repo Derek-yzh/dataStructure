@@ -1,18 +1,10 @@
 package org.example;
 
-import static org.junit.Assert.assertTrue;
-
-import org.example.domin.HeroNode;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jol.info.ClassLayout;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 /**
  * Unit test for simple App.
