@@ -1,4 +1,4 @@
-package org.example.Amy.lesson;
+package org.example.lesson;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

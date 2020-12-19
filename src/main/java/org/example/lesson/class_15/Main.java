@@ -1,4 +1,4 @@
-package org.example.Amy.lesson.class_15;
+package org.example.lesson.class_15;
 
 import java.util.Stack;
 
