@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @Author: Derek
  * @DateTime: 2020/12/18 18:03
- * @Description: TODO
+ * @Description: ResponseMappingCallback
  */
 public class ResponseMappingCallback {
     static ConcurrentHashMap<Long, CompletableFuture<Object>> mapping = new ConcurrentHashMap<>();

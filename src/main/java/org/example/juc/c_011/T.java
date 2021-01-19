@@ -25,13 +25,8 @@ public class T {
 	
 	public static void main(String[] args) {
 		T t = new T();
-		Runnable r = new Runnable() {
-			@Override
-			public void run() {
-				t.m();
-			}
-			
-		};
+		Runnable r = () -> t.m();
+
 		new Thread(r, "t1").start();
 		
 		try {

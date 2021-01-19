@@ -54,8 +54,8 @@ public class ClientFactory {
         //有无状态来自于你使用什么协议，那么HTTP协议肯定是无状态，每个请求对应一个连接
         //dubbo是一个rpc框架 netty是一个io框架
 
-        //String type = "rpc";
         String type = "http";
+        //String type = "http";
         CompletableFuture<Object> res = new CompletableFuture<>();
 
         if ("rpc".equals(type)){

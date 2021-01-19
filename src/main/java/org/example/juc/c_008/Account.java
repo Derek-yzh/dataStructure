@@ -15,7 +15,6 @@ public class Account {
 			e.printStackTrace();
 		}
 
-		
 		this.balance = balance;
 	}
 	

@@ -29,7 +29,7 @@ public class DataChecker {
 			//InsertionSort.sort(arr2);
 			//ShellSort.sort(arr2);
 			//MergeSort.sort(arr2, 0, arr2.length-1);
-			QuickSort.sort(arr2, 0, arr2.length-1);
+			_5QuickSort.sort(arr2, 0, arr2.length-1);
 			
 			
 			for (int i = 0; i < arr2.length; i++) {

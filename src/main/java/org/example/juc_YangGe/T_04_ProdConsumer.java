@@ -8,6 +8,7 @@ class Pcd1{
     private int number = 0;
     private Lock lock = new ReentrantLock();
     private Condition condition = lock.newCondition();
+
     public void increment()throws Exception{
         lock.lock();
         try {

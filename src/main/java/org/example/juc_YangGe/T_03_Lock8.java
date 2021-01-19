@@ -9,7 +9,7 @@ class Phone{
         System.out.println("*********sendEmail");
     }
 
-    public synchronized void senSMS() throws Exception{
+    public static synchronized void senSMS() throws Exception{
         System.out.println("*********sendSMS");
     }
 
@@ -65,7 +65,7 @@ public class T_03_Lock8 {
             try {
                 //phone.senSMS();
                 //phone.sayHello();
-                phone.senSMS();
+                phone2.senSMS();
             }catch (Exception e){
                 e.printStackTrace();
             }finally {

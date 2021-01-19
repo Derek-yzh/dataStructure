@@ -2,6 +2,9 @@ package org.example.juc.c_026_01_ThreadPool;
 
 import java.util.concurrent.*;
 
+/**
+ * 自定义拒绝策略
+ */
 public class T14_MyRejectedHandler {
     public static void main(String[] args) {
         ExecutorService service = new ThreadPoolExecutor(4, 4,

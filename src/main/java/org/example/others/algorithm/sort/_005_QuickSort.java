@@ -16,8 +16,8 @@ public class _005_QuickSort {
         quickSort(arr,0,arr.length-1);
         System.out.println("排序后："+Arrays.toString(arr));
         System.out.println("=======================================");
-        int[] a = new int[80_000_000];
-        for (int i = 0; i < 80_000_000; i++) {
+        int[] a = new int[80_00_000];
+        for (int i = 0; i < 80_00_000; i++) {
             a[i] = (int)(Math.random() * 8000000);
         }
         long start = System.nanoTime();
@@ -31,26 +31,33 @@ public class _005_QuickSort {
         int l = left;
         int r = right;
         int temp = 0;
-        while (l < right){
+
+        while (l < r){
             while (arr[l] < pivot){
                 l++;
             }
             while (arr[r] > pivot){
+                r--;
             }
             if (l >= r){
                 break;
             }
+
+            //change
             temp = arr[l];
             arr[l] = arr[r];
             arr[r] = temp;
+
             if (arr[l] == pivot){
                 r--;
             }
             if (arr[r] == pivot){
                 l++;
             }
-                r--;
+
+            r--;
         }
+
         if ( l == r) {
             l++;
             r--;

@@ -6,20 +6,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class T01_AtomicInteger {
-	/*volatile*/ //int count1 = 0;
+	volatile int count1 = 0;
 	
-	AtomicInteger count = new AtomicInteger(0); 
+	AtomicInteger count = new AtomicInteger(0);
 
-	/*synchronized*/ void m() { 
+	/*synchronized*/ void m() {
 		for (int i = 0; i < 10000; i++)
 			//if count1.get() < 1000
-			count.incrementAndGet(); //count1++
+			count1++;
+			//count.incrementAndGet();
 	}
 
 	public static void main(String[] args) {
 		T01_AtomicInteger t = new T01_AtomicInteger();
 
-		List<Thread> threads = new ArrayList<Thread>();
+		List<Thread> threads = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
 			threads.add(new Thread(t::m, "thread-" + i));
@@ -35,7 +36,7 @@ public class T01_AtomicInteger {
 			}
 		});
 
-		System.out.println(t.count);
+		System.out.println(t.count1);
 
 	}
 

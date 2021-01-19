@@ -17,11 +17,14 @@ import org.example.io._008_RPC.rpc.service.Fly;
 import org.example.io._008_RPC.rpc.service.Person;
 import org.example.io._008_RPC.rpc.service.impl.MyCar;
 import org.example.io._008_RPC.rpc.service.impl.MyFly;
+import org.example.io._008_RPC.rpc.transport.Decode;
 import org.example.io._008_RPC.rpc.transport.MyHttpRpcHandler;
+import org.example.io._008_RPC.rpc.transport.ServerRequestHandler;
 import org.example.io._008_RPC.util.SerDerUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
@@ -54,7 +57,7 @@ public class MyRPCTest {
         ServerBootstrap sbs = new ServerBootstrap();
         ChannelFuture bind = sbs.group(boss, worker)
                 .channel(NioServerSocketChannel.class)
-                .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                .childHandler(new ChannelInitializer<NioSocketChannel>(){
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
                         System.out.println("server accept client port: "+ch.remoteAddress().getPort());
@@ -63,7 +66,7 @@ public class MyRPCTest {
                         //1.自定义的rpc
                         //p.addLast(new Decode());
                         //p.addLast(new ServerRequestHandler(dis));
-                        //自己定义协议关注的问题：粘包拆包的问题，header+content
+                        // 自己定义协议关注的问题：粘包拆包的问题，header+content
 
                         //2.http传输协议 可以自己学解码，其实netty提供了一套编解码
                         p.addLast(new HttpServerCodec()); //netty提供的一套编解码
@@ -106,8 +109,6 @@ public class MyRPCTest {
                                 ctx.writeAndFlush(response);
                             }
                         });
-
-
                     }
                 }).bind(new InetSocketAddress("localhost", 9090));
         try {
@@ -176,7 +177,6 @@ public class MyRPCTest {
             e.printStackTrace();
         }
     }
-
 
     /**
      * http协议下的RPC

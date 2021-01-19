@@ -1,5 +1,8 @@
 package org.example.jvm.jvm.c3_jmm;
 
+/**
+ * 乱序执行的证明
+ */
 public class T04_Disorder {
     private static int x = 0, y = 0;
     private static int a = 0, b =0;

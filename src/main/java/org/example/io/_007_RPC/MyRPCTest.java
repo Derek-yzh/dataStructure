@@ -42,6 +42,7 @@ public class MyRPCTest {
     /**
      * 模拟server端
      */
+    @Test
     public void startServer(){
 
         MyCar car = new MyCar();

@@ -1,5 +1,6 @@
 package org.example.juc_YangGe;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -9,6 +10,7 @@ class Ticket{//资源类 = 实例变量 + 实例方法
     public void sale(){
         lock.lock();
         try {
+            try { TimeUnit.MILLISECONDS.sleep(30);} catch (InterruptedException e) {e.printStackTrace();}
             if (num > 0){
                 System.out.println(Thread.currentThread().getName()+"\t卖出第："+(num--)+"\t还剩下："+num);
             }

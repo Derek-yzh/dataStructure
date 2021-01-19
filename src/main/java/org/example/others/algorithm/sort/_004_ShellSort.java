@@ -24,8 +24,9 @@ public class _004_ShellSort {
             a[i] = (int)(Math.random() * 8000000);
         }
         long start = System.nanoTime();
-        shellSort(a);
+        shellSort2(a);
         long end = System.nanoTime();
+        //System.out.println("排序后："+Arrays.toString(a));
         System.out.println("共花了"+(end-start)/1000_000+"微秒");//2500微秒
     }
 

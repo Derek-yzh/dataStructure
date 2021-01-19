@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.LongAdder;
 
 /**
  * 测试对比时间
- * Atomic: 100000000 time 1995
+ * Atomic: 100 000 000 time 1995
  * Sync: 100000000 time 3068
  * LongAdder: 100000000 time 620
  */

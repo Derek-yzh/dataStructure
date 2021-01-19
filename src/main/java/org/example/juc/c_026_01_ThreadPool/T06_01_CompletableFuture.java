@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 /**
  * 假设你能够提供一个服务
@@ -28,8 +29,14 @@ public class T06_01_CompletableFuture {
         CompletableFuture<Double> futureTM = CompletableFuture.supplyAsync(()->priceOfTM());
         CompletableFuture<Double> futureTB = CompletableFuture.supplyAsync(()->priceOfTB());
         CompletableFuture<Double> futureJD = CompletableFuture.supplyAsync(()->priceOfJD());
+        CompletableFuture<Double> futureJE = CompletableFuture.supplyAsync(new Supplier<Double>() {
+            @Override
+            public Double get() {
+                return 100.00;
+            }
+        });
 
-        CompletableFuture.allOf(futureTM, futureTB, futureJD).join();
+        CompletableFuture.allOf(futureTM, futureTB, futureJD,futureJE).join();
 
         /*CompletableFuture.supplyAsync(()->priceOfTM())
                 .thenApply(String::valueOf)

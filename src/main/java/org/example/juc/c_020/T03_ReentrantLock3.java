@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * reyLock的使用
+ * tryLock的使用
  *
  * 	Lock lock = new ReentrantLock();
  *  locked = lock.tryLock(5, TimeUnit.SECONDS);

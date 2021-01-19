@@ -1,7 +1,7 @@
 package org.example.jvm.mashibing;
 
 /**
- * 乱序执行
+ * 测试乱序执行
  */
 public class T05_Disorder {
     private static int x = 0, y = 0;

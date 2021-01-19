@@ -1,7 +1,11 @@
 package org.example.juc.c_017_MoreAboutSync;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * new 出来的不相等
+ */
 public class DoNotLockString {
 	
 	String s1 = new String("aaa");
@@ -10,14 +14,13 @@ public class DoNotLockString {
 	void m1() {
 		synchronized(s1) {
  			try { TimeUnit.MILLISECONDS.sleep(3000);} catch (InterruptedException e) {e.printStackTrace();}
+		System.out.println("m1");
  		}
 	}
 	
 	void m2() {
 		synchronized(s2) {
-			System.out.println("sdaa");
-			//try {TimeUnit.MILLISECONDS.sleep(300);} catch (InterruptedException e) {e.printStackTrace();}
-
+			System.out.println("m2");
 		}
 	}
 
@@ -25,11 +28,12 @@ public class DoNotLockString {
 		System.out.println(s1 == s2);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		DoNotLockString d1 = new DoNotLockString();
-		d1.m1();
-		d1.m2();
+		new Thread(d1::m1,"A").start();
+		new Thread(d1::m2,"A").start();
 
+		System.in.read();
 		d1.test();
 	}
 
