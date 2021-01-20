@@ -3,7 +3,7 @@ package org.example.A_T.T02.class_01;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/28 19:27
- * @Description: 2)转圈打印矩阵
+ * @Description: 2)转圈打印矩阵 (2)
  */
 public class T_005 {
     public static void main(String[] args) {
@@ -20,22 +20,15 @@ public class T_005 {
         int tC = 0;
         int dR = matrix.length-1;
         int dC = matrix[0].length-1;
-        while (tR <= dR && tC <= dC){
-            printEdge(matrix,tR++,tC++,dR--,dC--);
-        }
+        while (tR <= dR && tC <= dC)    printEdge(matrix,tR++,tC++,dR--,dC--);
+
     }
 
     //左上角a行b列  右下角c行d列
     public static void printEdge(int[][] m, int a, int b, int c, int d){
-        if (a == c){
-            for (int i = b; i <= d; i++) {
-                System.out.print(m[a][i]+" ");
-            }
-        }else if (b == d){
-            for (int i = a; i <= c; i++) {
-                System.out.print(m[i][b]);
-            }
-        }
+        if (a == c) for (int i = b; i <= d; i++)    System.out.print(m[a][i]+" ");
+        else if (b == d)   for (int i = a; i <= c; i++)    System.out.print(m[i][b]);
+
         else {
             int curC = b;
             int curR = a;

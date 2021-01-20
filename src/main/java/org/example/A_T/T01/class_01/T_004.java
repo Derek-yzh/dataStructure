@@ -3,12 +3,16 @@ package org.example.A_T.T01.class_01;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/20 16:00
- * @Description:
+ * @Description: (2)
  *      给定一个只包含正数的数组arr，arr中任何一个子数组sub,
  *      一定都可以算出（sub累加和）*（sub中的最小值）是什么，
  *      那么所有子数组中，这个值最大是多少
  */
 public class T_004 {
+
+    public static void function(int[] arr){
+
+    }
 
     public static void main(String[] args) {
         int[] arr = {3,2,5};

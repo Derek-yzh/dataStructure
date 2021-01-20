@@ -3,7 +3,7 @@ package org.example.A_T.T02.class_01;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/28 19:54
- * @Description: 3)原地旋转正方形矩阵
+ * @Description: 3)原地旋转正方形矩阵 (2)
  */
 public class T_006 {
 

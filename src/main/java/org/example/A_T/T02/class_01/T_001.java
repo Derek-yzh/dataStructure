@@ -3,7 +3,7 @@ package org.example.A_T.T02.class_01;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/28 11:58
- * @Description: 打表技巧和矩阵处理技巧
+ * @Description: 打表技巧和矩阵处理技巧 (2)
  *      小虎去买苹果，商店只提供两种类型的塑料袋，每种类型都有任意数量。
  *      1）能装下6个苹果的袋子
  *      2）能装下8个苹果的袋子

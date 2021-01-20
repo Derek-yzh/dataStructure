@@ -3,11 +3,10 @@ package org.example.A_T.T01.class_02;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/20 16:32
- * @Description: 类似斐波那契数列的递归
+ * @Description: 类似斐波那契数列的递归 (2)
  *      马踏棋盘问题
  */
 public class T_001 {
-
     public static void main(String[] args) {
         int res = f(2, 3, 3);
         int res2 = f2(2, 3, 3);

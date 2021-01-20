@@ -3,7 +3,7 @@ package org.example.A_T.A_2;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/24 10:35
- * @Description: TODO
+ * @Description: (2)
  *      给定一个数组，代表每个人喝完咖啡准备刷杯子的时间
  *      只有一个咖啡机，一次只能洗一个杯子，时间耗费a，洗完才能洗下一杯
  *      每个咖啡杯也可以自己挥发干净，时间耗费b，咖啡杯可以并行挥发
@@ -12,11 +12,26 @@ package org.example.A_T.A_2;
  */
 public class T_015 {
 
+    public static int function(int[] drinks, int a, int b, int index, int washLine){
+        if (index == drinks.length) return 0;
+
+        int wash = Math.max(washLine,drinks[index])+a;
+        int next1 = function(drinks,a,b,index+1,wash);
+        int p1 = Math.max(wash,next1);
+
+        int dry = drinks[index]+b;
+        int next2 = function(drinks,a,b,index+1,washLine);
+        int p2 = Math.max(dry,next2);
+
+        return Math.min(p1,p2);
+    }
+
     public static void main(String[] args) {
-        int[] arr = {1,1,5,5,7,10,12,12,12,12,12,12,12,15};
+        int[] arr = {1,1,5,5,7,10,12,12,12,12,12,12,12,13,14,15,16};
         int a = 3;
         int b = 10;
         System.out.println(process(arr,a,b,0,0));
+        System.out.println(function(arr,a,b,0,0));
         System.out.println(dp(arr,a,b));
     }
 
