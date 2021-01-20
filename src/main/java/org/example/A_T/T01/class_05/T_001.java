@@ -9,10 +9,9 @@ public class T_001 {
 
 
     public static int manacher(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
-        // "12132" -> "#1#2#1#3#2#"
+        if (s == null || s.length() == 0)   return 0;
+
+        // s:"12132" -> str:"#1#2#1#3#2#"
         char[] str = manacherString(s);
         // 回文半径的大小
         int[] pArr = new int[str.length];
@@ -44,11 +43,15 @@ public class T_001 {
         char[] charArr = str.toCharArray();
         char[] res = new char[str.length() * 2 + 1];
         int index = 0;
-        for (int i = 0; i != res.length; i++) {
-            res[i] = (i & 1) == 0 ? '#' : charArr[index++];
-        }
+        for (int i = 0; i != res.length; i++)   res[i] = (i & 1) == 0 ? '#' : charArr[index++];
         return res;
     }
+
+
+
+
+
+
 
 
     // for test

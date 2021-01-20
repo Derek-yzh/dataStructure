@@ -3,7 +3,7 @@ package org.example.A_T.T02.class_01;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/28 12:55
- * @Description:
+ * @Description: (2)
  *
  *      给定一个正整数N，表示有N份青草统一放在仓库里
  *      有一只牛和一只羊，牛先吃，羊后吃，它俩轮流吃草

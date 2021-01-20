@@ -3,7 +3,7 @@ package org.example.A_T.T01.class_03;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/25 10:19
- * @Description: KMP
+ * @Description: KMP (2)
  * 
  */
 public class T_001_KMP {
@@ -12,12 +12,12 @@ public class T_001_KMP {
         String str = "zafsdbsfejdjsdfght445";
         String match = "sdf";
         System.out.println(function(str, match));
+        System.out.println(str.indexOf(match));
+        System.out.println(str.concat(match));
     }
 
     public static int function(String s, String m){
-        if (s == null || m == null || m.length() < 1 || s.length() < m.length()){
-            return -1;
-        }
+        if (s == null || m == null || m.length() < 1 || s.length() < m.length())    return -1;
         char[] str = s.toCharArray();
         char[] match = m.toCharArray();
         int x = 0;

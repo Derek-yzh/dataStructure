@@ -3,7 +3,7 @@ package org.example.A_T.T01.class_05;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/26 15:31
- * @Description: 给定一个字符串 添加最少字符使之称=成为回文字符串
+ * @Description: 给定一个字符串 添加最少字符使之称=成为回文字符串 (2)
  */
 public class T_002 {
 

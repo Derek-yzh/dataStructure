@@ -3,7 +3,7 @@ package org.example.A_T.T01.class_02;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/24 14:58
- * @Description: 斐波那契
+ * @Description: 斐波那契 (2)
  */
 public class T_002 {
 

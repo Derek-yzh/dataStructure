@@ -5,7 +5,10 @@ import java.util.ArrayList;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/26 10:27
- * @Description: TODO
+ * @Description: (2)
+ *
+ *  big做头节点的树，其中是否有某棵子树的结构，是和small为头的树，完全一样的
+ *
  */
 public class T_001 {
 
@@ -21,37 +24,25 @@ public class T_001 {
 
     // big做头节点的树，其中是否有某棵子树的结构，是和small为头的树，完全一样的
     public static boolean containsTree1(Node big, Node small) {
-        if (small == null) {
-            return true;
-        }
+        if (small == null) return true;
+
         // small != null
-        if (big == null) {
-            return false;
-        }
+        if (big == null) return false;
+
         // big！=null  small!=null
-        if (isSameValueStructure(big, small)) {
-            return true;
-        }
+        if (isSameValueStructure(big, small)) return true;
+
         return containsTree1(big.left, small) || containsTree1(big.right, small);
     }
 
     // head1为头的树，是否在结构对应上，完全和head2一样
     public static boolean isSameValueStructure(Node head1, Node head2) {
-        if (head1 == null && head2 != null) {
-            return false;
-        }
-        if (head1 != null && head2 == null) {
-            return false;
-        }
-        if (head1 == null && head2 == null) {
-            return true;
-        }
-        if (head1.value != head2.value) {
-            return false;
-        }
+        if (head1 == null && head2 == null) return true;
+        if (head1 == null || head2 == null) return false;
+        if (head1.value != head2.value) return false;
+
         // head1.value == head2.value
-        return isSameValueStructure(head1.left, head2.left)
-                && isSameValueStructure(head1.right, head2.right);
+        return isSameValueStructure(head1.left, head2.left) && isSameValueStructure(head1.right, head2.right);
     }
 
     public static boolean containsTree2(Node big, Node small) {

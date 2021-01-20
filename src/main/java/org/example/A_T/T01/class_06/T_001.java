@@ -18,9 +18,7 @@ public class T_001 {
     }
 
     public static void process(Node head){
-        if (head == null){
-            return;
-        }
+        if (head == null)   return;
         Node cur = head;
         Node mostRight = null;
         while (cur != null){
