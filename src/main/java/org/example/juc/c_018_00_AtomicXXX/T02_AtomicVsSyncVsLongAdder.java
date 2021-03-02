@@ -11,8 +11,8 @@ import java.util.concurrent.atomic.LongAdder;
  * LongAdder: 100000000 time 412
  */
 public class T02_AtomicVsSyncVsLongAdder {
-    static long count2 = 0L;
     static AtomicLong count1 = new AtomicLong(0L);
+    static long count2 = 0L;
     static LongAdder count3 = new LongAdder();
 
     public static void main(String[] args) throws Exception {
