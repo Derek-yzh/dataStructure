@@ -24,7 +24,8 @@ public class T03_VolatileReference2 {
         });
 
         Thread reader = new Thread(()->{
-            while (data == null) {}
+            while (data == null) {
+            }
             int x = data.a;
             int y = data.b;
             if(x != y) {

@@ -21,7 +21,7 @@ public class T05_VolatileVsSync {
 			threads.add(new Thread(t::m, "thread-" + i));
 		}
 
-		threads.forEach((o) -> o.start());
+		threads.forEach(Thread::start);
 
 		threads.forEach((o) -> {
 			try {
