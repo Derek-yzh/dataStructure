@@ -9,25 +9,15 @@ public class TestReentrantLock {
 
     public static void main(String[] args) {
         ReentrantLock lock = new ReentrantLock();
-        lock.lock();
-        //synchronized (TestReentrantLock.class) {
-            i++;
-        //}
-
-        try { TimeUnit.MILLISECONDS.sleep(300);} catch (InterruptedException e) {e.printStackTrace();}
 
         new Thread(() -> {
             lock.lock();
             try {TimeUnit.MILLISECONDS.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
         },"A").start();
 
-        /*new Thread(() -> {
-            lock.lock();
-            },"B").start();*/
+        lock.lock();
 
         try {TimeUnit.MINUTES.sleep(30000000);} catch (InterruptedException e) {e.printStackTrace();}
         lock.unlock();
-
-        //synchronized 程序员的丽春院 JUC
     }
 }
