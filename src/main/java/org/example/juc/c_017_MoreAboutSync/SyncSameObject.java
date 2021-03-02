@@ -24,21 +24,14 @@ public class SyncSameObject {
 	
 	public static void main(String[] args) {
 		SyncSameObject t = new SyncSameObject();
-
 		new Thread(t::m, "t1").start();
-		
 		try {
 			TimeUnit.SECONDS.sleep(3);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
-		Thread t2 = new Thread(t::m, "t2");
-		
 		t.o = new Object();
-
-		t2.start();
-		
+		new Thread(t::m, "t2").start();
 	}
 
 	
