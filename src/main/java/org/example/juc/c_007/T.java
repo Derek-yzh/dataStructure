@@ -14,12 +14,13 @@ public class T {
 	}
 	
 	public void m2() {
+		System.out.println(Thread.currentThread().getName() + " m2 start ");
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println(Thread.currentThread().getName() + " m2 ");
+		System.out.println(Thread.currentThread().getName() + " m2 end ");
 	}
 	
 	public static void main(String[] args) {
@@ -32,14 +33,12 @@ public class T {
 		new Thread(t::m2, "t2").start();
 		
 		/*
-		//1.8֮
+		//1.8
 		new Thread(new Runnable() {
-
 			@Override
 			public void run() {
 				t.m1();
 			}
-			
 		});
 		*/
 		

@@ -3,6 +3,7 @@ package org.example.juc.c_010;
 import java.util.concurrent.TimeUnit;
 
 public class T {
+
 	synchronized void m() {
 		System.out.println("m start");
 		try {
