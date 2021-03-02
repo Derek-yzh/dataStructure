@@ -13,7 +13,7 @@ public class T02_ReentrantLock2 {
 
 	void m1() {
 		try {
-			lock.lock(); //synchronized(this)
+			lock.lock(); //=synchronized(this)
 			for (int i = 0; i < 10; i++) {
 				TimeUnit.SECONDS.sleep(1);
 				System.out.println(i);

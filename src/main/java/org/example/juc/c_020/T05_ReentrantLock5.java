@@ -12,7 +12,7 @@ public class T05_ReentrantLock5 extends Thread {
 	private static ReentrantLock lock = new ReentrantLock(true);//参数true表示为公平锁
 
     public void run() {
-        for(int i=0; i<100; i++) {
+        for(int i = 0; i < 100; i++) {
             lock.lock();
             try{
                 System.out.println(Thread.currentThread().getName()+"sa");

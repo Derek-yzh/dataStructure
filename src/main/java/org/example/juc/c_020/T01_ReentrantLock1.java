@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class T01_ReentrantLock1 {
 	synchronized void m1() {
-		for(int i=0; i<10; i++) {
+		for(int i = 0; i < 10; i++) {
 			try {
 				TimeUnit.SECONDS.sleep(1);
 			} catch (InterruptedException e) {
@@ -31,6 +31,6 @@ public class T01_ReentrantLock1 {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//new Thread(rl::m2).start();
+		new Thread(rl::m2).start();
 	}
 }

@@ -16,7 +16,6 @@ public class T04_ReentrantLock4 {
 	public static void main(String[] args) {
 		Lock lock = new ReentrantLock();
 		
-		
 		Thread t1 = new Thread(()->{
 			try {
 				lock.lock();
@@ -52,6 +51,7 @@ public class T04_ReentrantLock4 {
 			e.printStackTrace();
 		}
 		t2.interrupt();//打断线程2的等待
+		System.out.println("over...");
 		
 	}
 }

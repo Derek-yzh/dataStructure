@@ -11,6 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *  locked = lock.tryLock(5, TimeUnit.SECONDS);
  */
 public class T03_ReentrantLock3 {
+
 	Lock lock = new ReentrantLock();
 
 	void m1() {
@@ -28,11 +29,7 @@ public class T03_ReentrantLock3 {
 	}
 
 	void m2() {
-		/*
-		boolean locked = lock.tryLock();
-		System.out.println("m2 ..." + locked);
-		if(locked) lock.unlock();
-		*/
+
 		boolean locked = false;
 		
 		try {
