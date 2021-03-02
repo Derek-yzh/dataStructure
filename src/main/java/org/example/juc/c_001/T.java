@@ -8,7 +8,7 @@ package org.example.juc.c_001;
 public class T {
 	
 	private int count = 10;
-	private Object o = new Object();
+	private final Object o = new Object();
 	
 	public void m() {
 		synchronized(o) {
