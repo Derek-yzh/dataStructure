@@ -1,4 +1,4 @@
-package org.example.io;
+package org.example.io._003_testNIO;
 
 import java.net.InetSocketAddress;
 import java.net.StandardSocketOptions;
@@ -10,13 +10,13 @@ import java.util.LinkedList;
 /**
  * NIO
  */
-public class _003_SocketNIO {
+public class _02SocketNIO {
 
     public static void main(String[] args) throws Exception {
 
-        LinkedList<SocketChannel> clients = new LinkedList<>();
+        LinkedList<SocketChannel> clients = new LinkedList<>(); //所有客户端
 
-        ServerSocketChannel ss = ServerSocketChannel.open();
+        ServerSocketChannel ss = ServerSocketChannel.open(); //ServerSocketChannel 类似文件描述符fd
         ss.bind(new InetSocketAddress(9090));
         ss.configureBlocking(false); //false : 重点  OS  NONBLOCKING!!!
 
@@ -33,10 +33,9 @@ public class _003_SocketNIO {
             Thread.sleep(1000);
             SocketChannel client = ss.accept(); //不会阻塞？  -1 NULL
 
-            if (client == null) {
-                System.out.println("null.....");
-            } else {
-                client.configureBlocking(false);//重点 false：非阻塞
+            if (client == null) System.out.println("null.....");
+            else {
+                client.configureBlocking(false);//重点 false：设置客户端为非阻塞
                 int port = client.socket().getPort();
                 System.out.println("client...port: " + port);
                 clients.add(client);
@@ -44,8 +43,8 @@ public class _003_SocketNIO {
 
             ByteBuffer buffer = ByteBuffer.allocateDirect(4096);  //可以在堆里 堆外
 
-            for (SocketChannel c : clients) {   //串行化！！！！  多线程！！
-                int num = c.read(buffer);  // >0  -1  0   //不会阻塞
+            for (SocketChannel c : clients) { //串行化！！！！  多线程！！
+                int num = c.read(buffer); // >0  -1  0   //不会阻塞
                 if (num > 0) {
                     buffer.flip();
                     byte[] aaa = new byte[buffer.limit()];
@@ -56,6 +55,7 @@ public class _003_SocketNIO {
                     buffer.clear();
                 }
             }
+
         }
     }
 

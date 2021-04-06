@@ -21,9 +21,7 @@ public class _001_OSFileIO {
 
 
     public static void main(String[] args) throws Exception {
-
-
-        switch ( args[0]) {
+        /*switch ( args[0]) {
             case "0" :
                 testBasicFileIO();
                 break;
@@ -33,16 +31,17 @@ public class _001_OSFileIO {
             case "2" :
                 testRandomAccessFileWrite();
             case "3":
-//                whatByteBuffer();
+                whatByteBuffer();
             default:
 
-        }
+        }*/
     }
 
 
     //最基本的file写
     //10字节一次系统调用
-    public static  void testBasicFileIO() throws Exception {
+    @Test
+    public void _03_testBasicFileIO() throws Exception {
         File file = new File(path);
         FileOutputStream out = new FileOutputStream(file);
         while(true){
@@ -52,10 +51,10 @@ public class _001_OSFileIO {
         }
 
     }
-
     //测试buffer文件IO
     //  jvm  8kB   syscall  write(8KByte[])   ：8K一次系统调用
-    public static void testBufferedFileIO() throws Exception {
+    @Test
+    public void _03_testBufferedFileIO() throws Exception {
         File file = new File(path);
         BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
         while(true){
@@ -67,10 +66,11 @@ public class _001_OSFileIO {
 
 
     //测试文件NIO
-    public static void testRandomAccessFileWrite() throws  Exception {
+    @Test
+    public void _02_testRandomAccessFileWrite() throws  Exception {
         RandomAccessFile raf = new RandomAccessFile(path, "rw");
 
-        raf.write("hello mashibing\n".getBytes());
+        raf.write("hello yanzhenhua\n".getBytes());
         raf.write("hello seanzhou\n".getBytes());
         System.out.println("write------------");
         System.in.read();
@@ -82,7 +82,7 @@ public class _001_OSFileIO {
         System.in.read();
 
         FileChannel rafChannel = raf.getChannel();
-        //mmap  堆外  和文件映射的   byte  not  object
+        //mmap  堆外和文件映射的   byte  not  object
         MappedByteBuffer map = rafChannel.map(FileChannel.MapMode.READ_WRITE, 0, 4096);
 
         map.put("@@@".getBytes());  //不是系统调用  但是数据会到达内核的pageCache
@@ -126,7 +126,7 @@ public class _001_OSFileIO {
      * 想写的时候buffer.compact();
      */
     @Test
-    public  void whatByteBuffer(){
+    public  void _01_whatByteBuffer(){
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         //ByteBuffer buffer = ByteBuffer.allocateDirect(1024);//堆外
 
@@ -141,17 +141,17 @@ public class _001_OSFileIO {
         System.out.println("-------------put:123......");
         System.out.println("mark: " + buffer);
 
-        buffer.flip();   //读写交替
+        buffer.flip();//pos=0 limit=可读大小
 
         System.out.println("-------------flip......");
         System.out.println("mark: " + buffer);
 
-        buffer.get();
+        buffer.get();//pos+1
 
         System.out.println("-------------get......");
         System.out.println("mark: " + buffer);
 
-        buffer.compact();
+        buffer.compact();//pos+1 将limit后置
 
         System.out.println("-------------compact......");
         System.out.println("mark: " + buffer);

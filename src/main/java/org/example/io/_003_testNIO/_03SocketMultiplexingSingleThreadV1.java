@@ -1,4 +1,4 @@
-package org.example.io;
+package org.example.io._003_testNIO;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * 红黑树最大796712
  */
-public class _004_SocketMultiplexingSingleThreadV1 {
+public class _03SocketMultiplexingSingleThreadV1 {
 
     private ServerSocketChannel server = null;
     private Selector selector = null;//linux 多路复用器(select poll epoll) nginx event{}
@@ -142,7 +142,7 @@ public class _004_SocketMultiplexingSingleThreadV1 {
     }
 
     public static void main(String[] args) {
-        _004_SocketMultiplexingSingleThreadV1 service = new _004_SocketMultiplexingSingleThreadV1();
+        _03SocketMultiplexingSingleThreadV1 service = new _03SocketMultiplexingSingleThreadV1();
         service.start();
     }
 }

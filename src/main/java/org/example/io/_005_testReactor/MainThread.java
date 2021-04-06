@@ -14,12 +14,10 @@ public class MainThread {
         //混杂模式：只有一个线程负责accept，每个都会被分配client，进行R/W
         //SelectorTreadGroup stg = new SelectorTreadGroup(3);
 
-
         //2.把监听(9999)的server注册到某一个selector上
         stg.bind(9997);
         stg.bind(9998);
         stg.bind(9999);
-
 
     }
 

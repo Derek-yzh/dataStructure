@@ -1,4 +1,4 @@
-package org.example.io;
+package org.example.io._004_testSocketMultiplexingThreads;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -28,11 +28,11 @@ public class SocketMultiplexingThreadsV2 {
 
 class ServerBootStrap {
     private EventLoopGroup group;
-    private EventLoopGroup chiledGroup;
-    ServerAccept sAcceptr;
+    private EventLoopGroup childGroup;
+    ServerAccept sAccepter;
     public ServerBootStrap group(EventLoopGroup boss, EventLoopGroup worker) {
         group = boss;
-        chiledGroup = worker;
+        childGroup = worker;
         return this;
     }
 
@@ -41,7 +41,7 @@ class ServerBootStrap {
          ServerSocketChannel server = ServerSocketChannel.open();
         server.configureBlocking(false);
         server.bind(new InetSocketAddress(port));
-        sAcceptr = new ServerAccept(chiledGroup, server);
+        sAccepter = new ServerAccept(childGroup, server);
          EventLoop eventloop = group.chosser();
         //把启动server，bind端口的操作变成task，推送到eventloop中执行。
         eventloop.execute(new Runnable() {
@@ -53,7 +53,7 @@ class ServerBootStrap {
                         try {
                             eventloop.name = Thread.currentThread() + eventloop.name;
                             System.out.println("bind...server...to " + eventloop.name);
-                            server.register(eventloop.selector, SelectionKey.OP_ACCEPT, sAcceptr);
+                            server.register(eventloop.selector, SelectionKey.OP_ACCEPT, sAccepter);
                         } catch (ClosedChannelException e) {
                             e.printStackTrace();
                         }
@@ -66,17 +66,17 @@ class ServerBootStrap {
 
 class EventLoopGroup {
     AtomicInteger cid = new AtomicInteger(0);
-    EventLoop[] childrens = null;
+    EventLoop[] children = null;
 
     EventLoopGroup(int nThreads) {
-        childrens = new EventLoop[nThreads];
+        children = new EventLoop[nThreads];
         for (int i = 0; i < nThreads; i++) {
-            childrens[i] = new EventLoop("T" + i);
+            children[i] = new EventLoop("T" + i);
         }
     }
 
     public EventLoop chosser() {
-        return childrens[cid.getAndIncrement() % childrens.length];
+        return children[cid.getAndIncrement() % children.length];
     }
 }
 

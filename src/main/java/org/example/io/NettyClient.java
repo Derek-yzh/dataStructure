@@ -35,18 +35,13 @@ public class NettyClient {
                         }
                     });
 
-
             ChannelFuture conn = boot.connect().sync();
-
 
             Channel client = conn.channel();
             System.out.println(client);
 
             ByteBuf byteBuf = Unpooled.copiedBuffer("hello world".getBytes());
             client.writeAndFlush(byteBuf).sync();
-
-
-
 
         } catch (InterruptedException e) {
             e.printStackTrace();

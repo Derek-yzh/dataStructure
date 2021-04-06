@@ -101,7 +101,6 @@ public class MyNetty {
     @Test
     public void clientMode() throws InterruptedException {
         NioEventLoopGroup thread = new NioEventLoopGroup(2);
-
         //客户端模式
         NioSocketChannel client = new NioSocketChannel();
 
@@ -123,8 +122,10 @@ public class MyNetty {
         System.out.println("client over...");
     }
 
+    //测试NioEventLoopGroup
     @Test
     public void loopExecutor(){
+
         NioEventLoopGroup selector = new NioEventLoopGroup(2);
         selector.execute(()->{
             for(;;){
@@ -144,47 +145,7 @@ public class MyNetty {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    @Test
-    public void myByteBuf(){
-        //ByteBuf buf = ByteBufAllocator.DEFAULT.buffer(8, 20);
-
-        //pool
-        //ByteBuf buf = UnpooledByteBufAllocator.DEFAULT.heapBuffer(8, 20);
-        ByteBuf buf = PooledByteBufAllocator.DEFAULT.directBuffer(8, 20);
-
-        print(buf);
-
-        buf.writeBytes(new byte[]{1,2,3,4});
-        print(buf);
-        buf.writeBytes(new byte[]{1,2,3,4});
-        print(buf);
-        buf.writeBytes(new byte[]{1,2,3,4});
-        print(buf);
-        buf.writeBytes(new byte[]{1,2,3,4});
-        print(buf);
-        buf.writeBytes(new byte[]{1,2,3,4});
-        print(buf);
-
-
-    }
-
-    public static void print(ByteBuf buf){
-        System.out.println("buf.isReadable()    :\t"+buf.isReadable());
-        System.out.println("buf.readerIndex()   :\t"+buf.readerIndex());
-        System.out.println("buf.readableBytes() :\t"+buf.readableBytes());
-
-        System.out.println("buf.isWritable()    :\t"+buf.isWritable());
-        System.out.println("buf.writerIndex()   :\t"+buf.writerIndex());
-        System.out.println("buf.writableBytes() :\t"+buf.writableBytes());
-
-        System.out.println("buf.capacity()      :\t"+buf.capacity());
-        System.out.println("buf.maxCapacity()   :\t"+buf.maxCapacity());
-
-        System.out.println("buf.isDirect()      :\t"+buf.isDirect());
-
-        System.out.println("-----------------------------------------------");
     }
 
     /**
@@ -192,6 +153,7 @@ public class MyNetty {
      */
     @ChannelHandler.Sharable
     class ChannelInit extends ChannelInboundHandlerAdapter{
+
         @Override
         public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
             Channel client = ctx.channel();
@@ -199,6 +161,7 @@ public class MyNetty {
             p.addLast(new MyInHandler());//2.client::pipeLine[ChannelInit,MyInHandler]
             ctx.pipeline().remove(this);
         }
+
     }
 
     /**
@@ -206,6 +169,7 @@ public class MyNetty {
      * @ChannelHandler.Sharable 这个不应该强压给客户端
      */
     class MyInHandler extends ChannelInboundHandlerAdapter {
+
         @Override
         public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
             System.out.println("client register...");
@@ -225,6 +189,7 @@ public class MyNetty {
 
             ctx.writeAndFlush(buf);
         }
+
     }
 
     class MyAcceptHandler extends ChannelInboundHandlerAdapter{
@@ -257,6 +222,7 @@ public class MyNetty {
             //1.注册
             selector.register(client);
         }
+
     }
 
 }

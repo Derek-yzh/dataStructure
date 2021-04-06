@@ -40,7 +40,6 @@ public class SelectorTreadGroup {
             //注册到哪个selector上呢？
             nextSelector(server);
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,23 +52,16 @@ public class SelectorTreadGroup {
      */
     public void nextSelector(Channel c) {
         try {
-
             SelectorThread st = null;
-
-            if (c instanceof ServerSocketChannel){//server
-                st = next(boss);
-            }else {//client
-                st = next(worker);
-            }
+            if (c instanceof ServerSocketChannel)   st = next(boss); //server
+            else    st = next(worker); //client
             //1.通过队列传递数据 消息
             st.lbq.put(c);
             // 2.通过打断阻塞，让对应的线程自己在打断后完成注册selector
             st.selector.wakeup();
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     private SelectorThread next(SelectorThread[] sts) {

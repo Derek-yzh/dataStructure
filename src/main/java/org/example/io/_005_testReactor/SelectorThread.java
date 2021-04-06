@@ -57,14 +57,9 @@ public class SelectorThread extends ThreadLocal<LinkedBlockingQueue<Channel>> im
                         iter.remove();
 
                         //复杂，接受客户端的过程(接受之后要注册，多线程下，新的客户端要注册到哪里呢？)
-                        if (key.isAcceptable()){
-                            acceptHandler(key);
-                        }else if (key.isReadable()){
-                            readHandler(key);
-                        }else if (key.isWritable()){
-                            acceptHandler(key);
-                        }
-
+                        if (key.isAcceptable()) acceptHandler(key);
+                        else if (key.isReadable())  readHandler(key);
+                        else if (key.isWritable())  acceptHandler(key); //之后写write
                     }
 
                 }
@@ -74,16 +69,15 @@ public class SelectorThread extends ThreadLocal<LinkedBlockingQueue<Channel>> im
                     Channel c = lbq.take();
                     if (c instanceof ServerSocketChannel){
                         ServerSocketChannel server = (ServerSocketChannel) c;
-                        server.register(selector,SelectionKey.OP_ACCEPT);
-                        System.out.println(Thread.currentThread().getName()+" register listen");
+                        server.register(selector, SelectionKey.OP_ACCEPT);
+                        System.out.println(Thread.currentThread().getName() + " register listen");
                     }else if (c instanceof SocketChannel){
                         SocketChannel client = (SocketChannel) c;
                         ByteBuffer buffer = ByteBuffer.allocateDirect(4098);
-                        client.register(selector,SelectionKey.OP_READ,buffer);
-                        System.out.println(Thread.currentThread().getName()+" register client: "+client.getRemoteAddress());
+                        client.register(selector, SelectionKey.OP_READ, buffer);
+                        System.out.println(Thread.currentThread().getName() + " register client: " + client.getRemoteAddress());
                     }
                 }
-
 
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
@@ -100,15 +94,13 @@ public class SelectorThread extends ThreadLocal<LinkedBlockingQueue<Channel>> im
                 int num = client.read(buffer);
                 if (num > 0){//将读到的内容翻转，然后直接写出
                     buffer.flip();
-                    while (buffer.hasRemaining()){
-                        client.write(buffer);
-                    }
+                    while (buffer.hasRemaining())   client.write(buffer);
                     buffer.clear();
-                }else if (num == 0){
-                    break;
-                }else {
+                }
+                else if (num == 0) break;
+                else {
                     //客户端断开了
-                    System.out.println("client: "+client.getRemoteAddress()+" closed...");
+                    System.out.println("client: " + client.getRemoteAddress() + " closed...");
                     key.cancel();
                     break;
                 }
@@ -123,12 +115,11 @@ public class SelectorThread extends ThreadLocal<LinkedBlockingQueue<Channel>> im
         ServerSocketChannel server = (ServerSocketChannel) key.channel();
         try {
             SocketChannel client = server.accept();
-            client.configureBlocking(false);
+            client.configureBlocking(false); //设置客户端为非阻塞
             
             //选择一个selector注册
             stg.nextSelector(client);
-            
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }

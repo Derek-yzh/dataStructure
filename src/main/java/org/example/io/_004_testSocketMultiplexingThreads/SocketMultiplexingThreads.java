@@ -1,4 +1,4 @@
-package org.example.io;
+package org.example.io._004_testSocketMultiplexingThreads;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -66,37 +66,34 @@ public class SocketMultiplexingThreads {
 }
 
 class NioThread extends Thread {
-     Selector selector = null;
-     static int selectors = 0;
 
-     int id = 0;
+    Selector selector = null;
+    static int selectors = 0;
+    int id = 0;
 
-     volatile static BlockingQueue<SocketChannel>[] queue;
-
+    volatile static BlockingQueue<SocketChannel>[] queue;
     static AtomicInteger idx = new AtomicInteger();
 
-    NioThread(Selector sel,int n ) {
+    public NioThread(Selector sel,int n) {
         this.selector = sel;
-        this.selectors =  n;
-
+        this.selectors = n;
         queue =new LinkedBlockingQueue[selectors];
         for (int i = 0; i < n; i++) {
             queue[i] = new LinkedBlockingQueue<>();
         }
         System.out.println("Boss 启动");
     }
-   NioThread(Selector sel  ) {
-        this.selector = sel;
-       id = idx.getAndIncrement() % selectors  ;
-       System.out.println("worker: "+id +" 启动");
 
+    public NioThread(Selector sel) {
+        this.selector = sel;
+        id = idx.getAndIncrement() % selectors  ;
+        System.out.println("worker: "+id +" 启动");
     }
 
     @Override
     public void run() {
         try {
             while (true) {
-
                 while (selector.select(10) > 0) {
                     Set<SelectionKey> selectionKeys = selector.selectedKeys();
                     Iterator<SelectionKey> iter = selectionKeys.iterator();
@@ -110,7 +107,7 @@ class NioThread extends Thread {
                         }
                     }
                 }
-                if( ! queue[id].isEmpty()) {
+                if(!queue[id].isEmpty()) {
                     ByteBuffer buffer = ByteBuffer.allocate(8192);
                     SocketChannel client = queue[id].take();
                     client.register(selector, SelectionKey.OP_READ, buffer);
@@ -133,9 +130,7 @@ class NioThread extends Thread {
             SocketChannel client = ssc.accept();
             client.configureBlocking(false);
             int num = idx.getAndIncrement() % selectors;
-
             queue[num].add(client);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,7 +161,6 @@ class NioThread extends Thread {
             e.printStackTrace();
         }
     }
-
 
 }
 

@@ -44,12 +44,6 @@ public class NettyIO {
 
 class MyInbound extends ChannelInboundHandlerAdapter{
 
-//    @Override
-//    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//        System.out.println(msg);
-//        ctx.write(msg);
-//    }
-
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf buf = (ByteBuf) msg;
@@ -65,7 +59,6 @@ class MyInbound extends ChannelInboundHandlerAdapter{
         }
 
         ctx.write(msg);
-
     }
 
     @Override
@@ -78,4 +71,5 @@ class MyInbound extends ChannelInboundHandlerAdapter{
         System.out.println("客户端断开了连接");
         super.channelUnregistered(ctx);
     }
+
 }
