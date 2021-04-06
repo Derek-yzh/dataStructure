@@ -1,6 +1,8 @@
 package org.example.A_T.T01.class_01;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @Author: Derek
@@ -12,6 +14,18 @@ import java.util.LinkedList;
  */
 public class T_001 {
 
+    public static List<Integer> f(int[] arr, int w){
+        if (arr == null || arr.length == 0) return null;
+        ArrayList<Integer> res = new ArrayList<>();
+        LinkedList<Integer> list = new LinkedList<>(); //list存放数组下标 此处要使得list左边头为最大值
+        for (int i = 0; i < arr.length; i++) {
+            while (!list.isEmpty() && arr[i] >= arr[list.peekLast()]) list.pollLast();
+            list.addLast(i);
+            if (i - list.peekFirst() == w) list.pollFirst();
+            if (i - w >= -1) res.add(arr[list.peekFirst()]);
+        }
+        return res;
+    }
 
     public static int[] function(int[] arr, int w){
         if (arr == null || arr.length == 0) return null;
@@ -34,6 +48,9 @@ public class T_001 {
         for (int i = 0; i < res.length; i++) {
             System.out.print(res[i]+" ");
         }
+        System.out.println("=========");
+        List<Integer> r = f(arr, W);
+        System.out.println(r);
     }
 
     public static int[] getMaxWindow(int[] arr, int w) {

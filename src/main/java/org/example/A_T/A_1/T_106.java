@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  *      一根金条切成两半，是需要划分和长度数值一样的铜板的
  *      一群人想整分整块金条，怎么分最省铜板？
  *      输入一个数组，返回分割的最小代价。
- *      如：{10，20，30}，代表一共三个人，整块金条长69，金条要分成10，20，30三个部分
+ *      如：{10，20，30}，代表一共三个人，整块金条长60，金条要分成10，20，30三个部分
  */
 public class T_106 {
 
@@ -27,7 +27,7 @@ public class T_106 {
         int sum = 0;
         int cur = 0;
         while (pQ.size() > 1){
-            cur = pQ.poll()+pQ.poll();
+            cur = pQ.poll() + pQ.poll();
             sum += cur;
             pQ.add(cur);
         }

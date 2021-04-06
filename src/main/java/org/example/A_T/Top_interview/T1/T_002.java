@@ -21,10 +21,9 @@ public class T_002 {
     }
 
     public static boolean function1(char[] chars){
-        if (chars == null || chars.length <= 0){
-            return true;
-        }
+        if (chars == null || chars.length <= 0) return true;
         int count = 0;
+
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == '('){
                 count++;
@@ -39,23 +38,18 @@ public class T_002 {
     }
 
     private static int function2(char[] chars) {
-        if (chars == null || chars.length <= 0){
-            return 0;
-        }
+        if (chars == null || chars.length <= 0) return 0;
         int count = 0;
         int need = 0;
+
         for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == '('){
-                count++;
-            }else if (chars[i] == ')'){
-                if (count == 0){
-                    need++;
-                }else {
-                    count--;
-                }
+            if (chars[i] == '(')    count++;
+            else if (chars[i] == ')'){
+                if (count == 0) need++;
+                else    count--;
             }
         }
-        return count+need;
+        return count + need;
     }
 
 }

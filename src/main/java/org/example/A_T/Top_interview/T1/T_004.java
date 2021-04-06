@@ -18,15 +18,12 @@ public class T_004 {
     }
 
     public static int function(String s){
-        if (s == null || s.length() < 2){
-            return 0;
-        }
+        if (s == null || s.length() < 2)    return 0;
         char[] str = s.toCharArray();
         int N = str.length;
         int rAll = 0;
-        for (int i = 0; i < str.length; i++) {
-            rAll += str[i] == 'R' ? 1:0;
-        }
+        for (int i = 0; i < str.length; i++)    rAll += str[i] == 'R' ? 1:0;
+
         int ans = rAll;//分界线为最左侧   ：分界线左侧为R右侧为G
         int left = 0;
 
@@ -36,12 +33,6 @@ public class T_004 {
             ans = Math.min(ans,left+rAll);
         }
 
-        /*for (int i = 0; i < N - 1; i++) {
-            left += str[i] == 'G'?1:0;
-            rAll -= str[i] == 'R'?1:0;
-            ans = Math.min(ans,left + rAll);
-        }
-        ans = Math.min(ans,left+(str[N-1] == 'G'?1:0));*/
         return ans;
     }
 

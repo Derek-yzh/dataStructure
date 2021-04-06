@@ -1,5 +1,8 @@
 package org.example.A_T.A_1;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -15,13 +18,15 @@ import java.util.Comparator;
  */
 public class T_105 {
 
+    @Data
+    @AllArgsConstructor
+    public static class Program{
+        public int start;
+        public int end;
+    }
+
     public static int bestArrange(Program[] programs){
-        Arrays.sort(programs, new Comparator<Program>() {
-            @Override
-            public int compare(Program o1, Program o2) {
-                return o1.end - o2.end;
-            }
-        });
+        Arrays.sort(programs, (o1, o2) -> o1.end - o2.end);
         int deadLine = 0;
         int result = 0;
         for (Program program : programs) {
@@ -30,7 +35,6 @@ public class T_105 {
                 deadLine = program.end;
             }
         }
-
         return result;
 
 
@@ -45,21 +49,6 @@ public class T_105 {
         }
         return result;*/
     }
-
-    private static class ProgramComparator implements Comparator<Program> {
-        @Override
-        public int compare(Program o1, Program o2) {
-            return o1.end - o2.end;
-        }
-    }
-
-    public static void main(String[] args) {
-
-    }
-
-
-
-
 
     public static int function(Program[] programs){
         if (programs == null || programs.length == 0){
@@ -92,16 +81,5 @@ public class T_105 {
         }
         return next;
     }
-
-    public static class Program{
-        public int start;
-        public int end;
-
-        public Program(int start, int end) {
-            this.start = start;
-            this.end = end;
-        }
-    }
-
 
 }

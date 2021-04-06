@@ -20,40 +20,16 @@ public class T_001 {
         if (arr == null || arr.length <= 0 || k <= 0){
             return 0;
         }
-        int max = 0;
+        int res = 0;
         int left = 0;
         int right = 0;
 
         while (left < arr.length){
-
-            while (right < arr.length && arr[right] - arr[left] <= k){
-                right++;
-            }
-            max = Math.max(max,right-left);
+            while (right < arr.length && arr[right] - arr[left] <= k)   right++;
+            res = Math.max(res, right - left);
             left++;
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*while (left < arr.length){
-            while (right < arr.length && arr[right] - arr[left] <= k){
-                right++;
-            }
-            max = Math.max(max,right-left);
-            left++;
-        }*/
-        return max;
+        return res;
     }
 
 }

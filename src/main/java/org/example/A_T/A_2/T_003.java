@@ -28,10 +28,10 @@ public class T_003 {
             list.add(String.valueOf(chars));
             return;
         }
-        for (int j = index; j < chars.length; j++){
-            swap(chars,index,j);
-            process(chars,index+1,list);
-            swap(chars,index,j);//恢复现场
+        for (int j = index; j < chars.length; j++) {
+            swap(chars, index, j);
+            process(chars, index + 1, list);
+            swap(chars, j, index);
         }
     }
 

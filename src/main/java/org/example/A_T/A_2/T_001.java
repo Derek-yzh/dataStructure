@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @Author: Derek
  * @DateTime: 2020/9/26 8:49
- * @Description: 打印一个字符串的全部子序列 (2)
+ * @Description: 打印一个字符串的全部子序列 (3)
  */
 public class T_001 {
     public static void main(String[] args) {
@@ -34,9 +34,9 @@ public class T_001 {
             list.add(path);
             return;
         }
-        process(chars,index+1,list, path);
-        String yes = path + String.valueOf(chars[index]);
-        process(chars,index+1,list,yes);
+        process(chars,index+1, list, path);
+        String yes = path + chars[index];
+        process(chars,index+1, list, yes);
     }
 
 

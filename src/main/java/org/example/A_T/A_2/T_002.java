@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * @Author: Derek
  * @DateTime: 2020/9/26 9:47
- * @Description: 打印一个字符串的全部子序列，要求不要出现重复字面值的子序列 (2)
+ * @Description: 打印一个字符串的全部子序列，要求不要出现重复字面值的子序列 (3)
  */
 public class T_002 {
     public static void main(String[] args) {
